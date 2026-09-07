@@ -1,0 +1,6 @@
+{
+  "name": "Token Ledger",
+  "description": "Digital Asset Accounting Infrastructure for Institutional Finance",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
