@@ -40,10 +40,10 @@ export const DataSources: React.FC = () => {
 
   const categories = [
     { id: 'ALL', label: 'All Sources', count: dataSources.length },
-    { id: 'BLOCKCHAIN', label: 'Blockchain / DLT (Solana)', count: dataSources.filter((s) => s.category === 'BLOCKCHAIN').length },
+    { id: 'BLOCKCHAIN', label: 'Blockchain / DLT (Issuer Wallets & Solana)', count: dataSources.filter((s) => s.category === 'BLOCKCHAIN').length },
     { id: 'EXCHANGE', label: 'Exchange / Custody (Coinbase & Kraken)', count: dataSources.filter((s) => s.category === 'EXCHANGE').length },
     { id: 'TOKENIZATION_PLATFORM', label: 'Tokenization Platforms (Securitize & Backed)', count: dataSources.filter((s) => s.category === 'TOKENIZATION_PLATFORM').length },
-    { id: 'BANKING', label: 'Banking / Settlement (CIMB)', count: dataSources.filter((s) => s.category === 'BANKING').length },
+    { id: 'BANKING', label: 'Banking / Settlement (Standard Chartered)', count: dataSources.filter((s) => s.category === 'BANKING').length },
     { id: 'INTERNAL_SYSTEMS', label: 'Internal Systems (SAP & TMS)', count: dataSources.filter((s) => s.category === 'INTERNAL_SYSTEMS').length },
     { id: 'MANUAL', label: 'Manual Sources (CSV)', count: dataSources.filter((s) => s.category === 'MANUAL').length },
   ];
@@ -113,7 +113,7 @@ export const DataSources: React.FC = () => {
     <div className="space-y-6">
       <PageHeader
         title="Institutional Data Sources & Adapters"
-        subtitle="Manage read-only connections across Solana Treasury, Coinbase, Kraken, Securitize, Backed Finance, and CIMB Bank Settlement feeds."
+        subtitle="Manage read-only connections across Solana Treasury, issuer digital wallets (BlackRock, Khazanah, CIMB), Coinbase, Kraken, Securitize, and Backed Finance feeds."
         actions={
           <button
             id="btn-add-data-source"
@@ -251,6 +251,12 @@ export const DataSources: React.FC = () => {
                       {source.addressOrAccount}
                     </span>
                   </div>
+                  {source.custodian && (
+                    <div className="flex items-center justify-between">
+                      <span className="text-slate-400">Custodian:</span>
+                      <span className="font-semibold text-purple-300">{source.custodian}</span>
+                    </div>
+                  )}
                   <div className="flex items-center justify-between">
                     <span className="text-slate-400">Normalized Records:</span>
                     <span className="font-semibold text-purple-300 font-mono">{source.txCount} Ingested</span>
@@ -289,7 +295,7 @@ export const DataSources: React.FC = () => {
         <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
         <div>
           <strong className="text-white">Institutional Security Guarantee: </strong>
-          Token Ledger never requests or stores private keys, seed phrases, or transaction-signing credentials. All Solana, Coinbase, Kraken, Securitize, and CIMB integrations operate in strictly read-only subledger audit mode.
+          Token Ledger never requests or stores private keys, seed phrases, or transaction-signing credentials. All Solana, issuer digital wallet (BlackRock, Khazanah, CIMB), Coinbase, Kraken, and Securitize integrations operate in strictly read-only subledger audit mode.
         </div>
       </div>
 

@@ -206,11 +206,13 @@ export const Transactions: React.FC = () => {
           >
             <option value="ALL">All Custody Locations</option>
             <option value="Solana">Solana Treasury</option>
+            <option value="BlackRock">BlackRock Digital Wallet</option>
+            <option value="Khazanah">Khazanah Digital Wallet</option>
+            <option value="CIMB Digital">CIMB Digital Wallet</option>
             <option value="Coinbase">Coinbase Institutional</option>
             <option value="Kraken">Kraken Pro OTC</option>
             <option value="Securitize">Securitize Registry</option>
             <option value="Backed">Backed Swiss Custody</option>
-            <option value="CIMB">CIMB Bank Settlement</option>
           </select>
 
           <select

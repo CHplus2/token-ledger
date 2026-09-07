@@ -95,6 +95,7 @@ export const AssetRegister: React.FC = () => {
             <thead>
               <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
                 <th className="py-3 px-4">Asset</th>
+                <th className="py-3 px-4">Custody Wallet & Custodian</th>
                 <th className="py-3 px-4 text-right font-mono">Holding Quantity</th>
                 <th className="py-3 px-4 text-right font-mono">Spot Unit Price (USD)</th>
                 <th className="py-3 px-4 text-right font-mono">Total Market Value</th>
@@ -141,6 +142,22 @@ export const AssetRegister: React.FC = () => {
                           <span className="text-[11px] text-purple-300 font-mono">{a.assetSymbol}</span>
                         </div>
                       </div>
+                    </td>
+
+                    <td className="py-3.5 px-4">
+                      {a.walletName ? (
+                        <div>
+                          <div className="font-semibold text-slate-200">{a.walletName}</div>
+                          <div className="text-[11px] text-slate-400">
+                            Custodian: <span className="text-purple-300 font-medium">{a.custodian}</span>
+                          </div>
+                          <div className="text-[10px] text-slate-500 font-mono mt-0.5">
+                            {a.chains?.join(' • ')}
+                          </div>
+                        </div>
+                      ) : (
+                        <span className="text-slate-500">{a.network}</span>
+                      )}
                     </td>
 
                     <td className="py-3.5 px-4 text-right font-mono font-bold text-white">

@@ -202,7 +202,7 @@ export const Reconciliation: React.FC = () => {
             <div>
               <h3 className="text-sm font-bold text-white">Five-Way Cross-Platform Asset Master</h3>
               <p className="text-xs text-slate-400">
-                Direct parity check across (1) Solana DLT, (2) Exchanges, (3) Issuers, (4) Subledger, and (5) General Ledger
+                Direct parity check across (1) Solana DLT, (2) Secondary Chains / Exchanges, (3) Issuers, (4) Subledger, and (5) General Ledger
               </p>
             </div>
             <div className="flex items-center gap-2 text-xs text-slate-400">
@@ -216,7 +216,7 @@ export const Reconciliation: React.FC = () => {
                 <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
                   <th className="py-3 px-3">Tokenized Instrument</th>
                   <th className="py-3 px-3 text-right font-mono">1. Solana / DLT</th>
-                  <th className="py-3 px-3 text-right font-mono">2. Exchange Feeds</th>
+                  <th className="py-3 px-3 text-right font-mono">2. Secondary Chain / Exchange</th>
                   <th className="py-3 px-3 text-right font-mono">3. Tokenization Platform</th>
                   <th className="py-3 px-3 text-right font-mono">4. Subledger Units</th>
                   <th className="py-3 px-3 text-right font-mono">5. General Ledger (USD)</th>
@@ -321,7 +321,7 @@ export const Reconciliation: React.FC = () => {
           <div>
             <h3 className="text-sm font-bold text-white">Granular Position Tracking by Custody Location</h3>
             <p className="text-xs text-slate-400">
-              Institutional breakdown of tokenized assets across Solana Treasury Accounts, Coinbase Institutional, Kraken, and Bank Settlement Feeds
+              Institutional breakdown of tokenized assets across issuer-operated digital wallets (BlackRock, Khazanah, CIMB), Solana Treasury Accounts, Coinbase Institutional, and Kraken
             </p>
           </div>
 
@@ -381,8 +381,14 @@ export const Reconciliation: React.FC = () => {
                         </div>
                         <div className="flex justify-between">
                           <span>Identifier:</span>
-                          <span className="font-mono text-slate-400">{pos.walletOrAccount}</span>
+                          <span className="font-mono text-slate-400 truncate max-w-[140px]" title={pos.walletOrAccount}>{pos.walletOrAccount}</span>
                         </div>
+                        {pos.custodian && (
+                          <div className="flex justify-between">
+                            <span>Custodian:</span>
+                            <span className="font-medium text-purple-300">{pos.custodian}</span>
+                          </div>
+                        )}
                       </div>
                       {pos.notes && (
                         <div className="mt-2 pt-1.5 border-t border-amber-500/20 text-[10px] text-amber-300 font-medium leading-tight">

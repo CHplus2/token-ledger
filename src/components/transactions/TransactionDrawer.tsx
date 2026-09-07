@@ -118,6 +118,18 @@ export const TransactionDrawer: React.FC<TransactionDrawerProps> = ({ tx, onClos
               <span className="text-slate-400">Connected Source:</span>
               <span className="font-semibold text-slate-300">{tx.sourceName}</span>
             </div>
+            {tx.walletName && (
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400">Digital Wallet:</span>
+                <span className="font-semibold text-slate-300">{tx.walletName}</span>
+              </div>
+            )}
+            {tx.custodian && (
+              <div className="flex items-center justify-between">
+                <span className="text-slate-400">Custodian:</span>
+                <span className="font-semibold text-purple-300">{tx.custodian}</span>
+              </div>
+            )}
             <div className="flex items-center justify-between">
               <span className="text-slate-400">Tokenized Asset Movement:</span>
               <span className="font-mono font-bold text-white">
@@ -310,6 +322,8 @@ export const TransactionDrawer: React.FC<TransactionDrawerProps> = ({ tx, onClos
                       dltRef: tx.txHash,
                       location: tx.location,
                       network: tx.network,
+                      walletName: tx.walletName,
+                      custodian: tx.custodian,
                       movements: tx.movements,
                       valuation: { spotUsd: tx.fiatValue, source: tx.priceSource },
                     },

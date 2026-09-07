@@ -91,7 +91,7 @@ export const Dashboard: React.FC = () => {
             </h2>
             <p className="text-sm text-slate-300 max-w-2xl leading-relaxed">
               Your tokenized asset books are <strong className="text-emerald-400 font-bold">{closeReadinessScore}% ready to close</strong>.
-              {' '}Reconciliation across <span className="text-indigo-300 font-medium">Solana Treasury, Coinbase, Kraken & CIMB</span> stands at <strong className="text-emerald-300 font-bold">{reconciliationRatePercent}%</strong>.
+              {' '}Reconciliation across <span className="text-indigo-300 font-medium">issuer-custodied wallets (BlackRock, Khazanah, CIMB) and Coinbase/Kraken venues</span> stands at <strong className="text-emerald-300 font-bold">{reconciliationRatePercent}%</strong>.
               {openBreaksCount > 0 && (
                 <> <strong className="text-amber-300">1 open exception</strong> on Backed NVDA (50-unit transfer variance) requires investigation.</>
               )}
@@ -203,7 +203,7 @@ export const Dashboard: React.FC = () => {
               <h3 className="text-sm font-bold text-white">Five-Way Cross-Platform Reconciliation Health</h3>
             </div>
             <p className="text-xs text-slate-400 mt-0.5">
-              Continuous validation across Solana Treasury, Coinbase, Kraken, Securitize / Backed Reg, Subledger & SAP GL
+              Continuous validation across issuer digital wallets (BlackRock, Khazanah, CIMB), Solana Treasury, Coinbase, Kraken, Securitize / Backed Reg, Subledger & SAP GL
             </p>
           </div>
           <button
@@ -333,7 +333,7 @@ export const Dashboard: React.FC = () => {
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="text-sm font-bold text-white">Position by Custody Venue</h3>
-              <p className="text-xs text-slate-400">Solana Treasury, Coinbase & Kraken</p>
+              <p className="text-xs text-slate-400">Issuer digital wallets, Solana Treasury, Coinbase & Kraken</p>
             </div>
             <button
               onClick={() => setActiveModule('sources')}
@@ -449,7 +449,7 @@ export const Dashboard: React.FC = () => {
         <div className="flex items-center justify-between mb-4">
           <div>
             <h3 className="text-sm font-bold text-white">Recent Multi-Venue Subledger Activity</h3>
-            <p className="text-xs text-slate-400">Institutional transactions across Solana, Coinbase, Kraken & CIMB</p>
+            <p className="text-xs text-slate-400">Institutional transactions across issuer digital wallets, Solana, Coinbase & Kraken</p>
           </div>
           <button
             onClick={() => setActiveModule('transactions')}
