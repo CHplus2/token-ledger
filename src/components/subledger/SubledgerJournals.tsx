@@ -28,6 +28,7 @@ export const SubledgerJournals: React.FC = () => {
     createJournalEntry,
     currentUser,
     entities,
+    organization,
     chartOfAccounts,
   } = useLedger();
 
@@ -84,7 +85,7 @@ export const SubledgerJournals: React.FC = () => {
 
     createJournalEntry({
       entityId,
-      entityName: entities.find((e) => e.id === entityId)?.name || 'Atlas Digital Treasury Ltd',
+      entityName: entities.find((e) => e.id === entityId)?.name || organization.name,
       period: '2026-08',
       postingDate: '2026-08-31',
       description,

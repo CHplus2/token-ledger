@@ -143,9 +143,9 @@ export const FinancialReports: React.FC = () => {
       {activeReport === 'BALANCE_SHEET' && (
         <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs p-6 max-w-3xl space-y-6 text-xs text-white">
           <div className="border-b border-[#222226] pb-4">
-            <h3 className="font-bold text-base text-white">Atlas Digital Treasury Ltd</h3>
+            <h3 className="font-bold text-base text-white">{organization.name}</h3>
             <p className="text-purple-400 font-semibold">Statement of Financial Position (Balance Sheet)</p>
-            <p className="text-slate-400 text-[11px]">As of August 31, 2026 • Reporting Currency: USD</p>
+            <p className="text-slate-400 text-[11px]">As of August 31, 2026 • Reporting Currency: {organization.reportingCurrency || 'USD'}</p>
           </div>
 
           {/* Current Assets */}
@@ -230,9 +230,9 @@ export const FinancialReports: React.FC = () => {
       {activeReport === 'INCOME_STATEMENT' && (
         <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs p-6 max-w-3xl space-y-4 text-xs text-white">
           <div className="border-b border-[#222226] pb-4">
-            <h3 className="font-bold text-base text-white">Atlas Digital Treasury Ltd</h3>
+            <h3 className="font-bold text-base text-white">{organization.name}</h3>
             <p className="text-purple-400 font-semibold">Statement of Profit & Loss and Other Comprehensive Income</p>
-            <p className="text-slate-400 text-[11px]">For the month ended August 31, 2026</p>
+            <p className="text-slate-400 text-[11px]">For the month ended August 31, 2026 • Currency: {organization.reportingCurrency || 'USD'}</p>
           </div>
 
           <div className="space-y-3">
