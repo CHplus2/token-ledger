@@ -47,6 +47,7 @@ export type NavigationModule =
   | 'subledger'
   | 'accounting'
   | 'assets'
+  | 'custody'
   | 'reports'
   | 'close'
   | 'audit'

@@ -15,6 +15,7 @@ import {
   Sparkles,
   Layers,
   ChevronRight,
+  Globe2,
 } from 'lucide-react';
 import { useLedger, NavigationModule } from '../../context/LedgerContext';
 
@@ -100,6 +101,16 @@ export const Sidebar: React.FC = () => {
           id: 'assets',
           label: 'Assets Register',
           icon: Coins,
+        },
+      ],
+    },
+    {
+      title: 'MULTI-CHAIN CUSTODY',
+      items: [
+        {
+          id: 'custody',
+          label: 'Custody Portfolio',
+          icon: Globe2,
         },
       ],
     },

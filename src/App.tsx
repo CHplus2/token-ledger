@@ -13,6 +13,7 @@ import { SubledgerJournals } from './components/subledger/SubledgerJournals';
 import { FinancialReports } from './components/reports/FinancialReports';
 import { AccountingRules } from './components/accounting/AccountingRules';
 import { AssetRegister } from './components/assets/AssetRegister';
+import { CustodyPortfolio } from './components/custody/CustodyPortfolio';
 import { MonthEndClose } from './components/close/MonthEndClose';
 import { AuditTrail } from './components/audit/AuditTrail';
 import { DataSources } from './components/sources/DataSources';
@@ -37,6 +38,8 @@ const MainLayout: React.FC = () => {
         return <AccountingRules />;
       case 'assets':
         return <AssetRegister />;
+      case 'custody':
+        return <CustodyPortfolio />;
       case 'close':
         return <MonthEndClose />;
       case 'audit':
