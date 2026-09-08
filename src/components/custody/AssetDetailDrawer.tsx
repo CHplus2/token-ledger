@@ -1,31 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { X, Globe2, ShieldCheck, Wallet as WalletIcon } from 'lucide-react';
-import { Asset, Holding } from '../../hooks/useCustodyPortfolio';
+import { Asset, UseCustodyPortfolioReturn } from '../../hooks/useCustodyPortfolio';
 import { ASSET_TYPE_LABELS, formatDate, formatUsd } from './formatters';
 
 interface AssetDetailDrawerProps {
   asset: Asset | null;
+  data: UseCustodyPortfolioReturn;
   onClose: () => void;
 }
 
-export const AssetDetailDrawer: React.FC<AssetDetailDrawerProps> = ({ asset, onClose }) => {
-  // Always loads every holding for this asset, independent of any filters
-  // active on the Holdings Table, so multi-chain assets are never shown
-  // partially just because a chain/custodian filter was applied elsewhere.
-  const [assetHoldings, setAssetHoldings] = useState<Holding[]>([]);
-  const [loading, setLoading] = useState(false);
-
-  useEffect(() => {
-    if (!asset) return;
-    setLoading(true);
-    fetch(`/api/custody/holdings?assetId=${asset.id}`)
-      .then((res) => res.json())
-      .then((rows: Holding[]) => setAssetHoldings(rows))
-      .catch(() => setAssetHoldings([]))
-      .finally(() => setLoading(false));
-  }, [asset]);
-
+export const AssetDetailDrawer: React.FC<AssetDetailDrawerProps> = ({ asset, data, onClose }) => {
   if (!asset) return null;
+
+  // Always the full set of holdings for this asset, independent of any
+  // filters active on the Holdings Table, so multi-chain assets are never
+  // shown partially just because a chain/custodian filter was applied
+  // elsewhere.
+  const assetHoldings = data.getHoldingsForAsset(asset.id);
 
   const totalValue = assetHoldings.reduce((sum, h) => sum + h.marketValue, 0);
   const chainCount = new Set(assetHoldings.map((h) => h.chain?.id)).size;
@@ -74,7 +65,6 @@ export const AssetDetailDrawer: React.FC<AssetDetailDrawerProps> = ({ asset, onC
             Holdings by Chain / Wallet / Custodian
           </div>
           <div className="space-y-2.5">
-            {loading && <div className="text-slate-500 text-center py-4">Loading holdings…</div>}
             {assetHoldings.map((h) => (
               <div key={h.id} className="bg-[#111114] rounded-xl p-3.5 border border-[#222226] space-y-1.5">
                 <div className="flex items-center justify-between">

@@ -72,7 +72,7 @@ export const CustodyPortfolio: React.FC = () => {
       {activeTab === 'HOLDINGS' && <HoldingsTable data={data} onSelectAsset={setSelectedAssetId} />}
       {activeTab === 'MANAGE' && <ManageEntities data={data} />}
 
-      <AssetDetailDrawer asset={selectedAsset} onClose={() => setSelectedAssetId(null)} />
+      <AssetDetailDrawer asset={selectedAsset} data={data} onClose={() => setSelectedAssetId(null)} />
     </div>
   );
 };
