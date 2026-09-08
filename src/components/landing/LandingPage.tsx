@@ -12,6 +12,7 @@ import {
   Globe2,
   CheckCircle2,
   Landmark,
+  FileText,
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -117,10 +118,10 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div
-              className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg shadow-xs"
-              style={{ backgroundColor: NAVY, color: GOLD }}
+              className="w-12 h-12 rounded-full flex items-center justify-center shadow-xs ring-2"
+              style={{ backgroundColor: NAVY, color: GOLD, ['--tw-ring-color' as any]: `${GOLD}66` }}
             >
-              TL
+              <FileText className="w-6 h-6" strokeWidth={2} />
             </div>
             <span className="text-xl font-bold tracking-tight" style={{ color: DARK_TEXT }}>
               Token Ledger
