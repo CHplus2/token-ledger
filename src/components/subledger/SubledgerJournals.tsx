@@ -372,8 +372,15 @@ export const SubledgerJournals: React.FC = () => {
               <div>
                 <div className="flex items-center justify-between mb-2">
                   <label className="font-bold uppercase tracking-wider text-slate-600">Journal Lines (Debit / Credit)</label>
-                  <span className={`font-mono font-bold ${isBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
-                    {isBalanced ? '✓ Debits Equal Credits' : `Difference: $${Math.abs(totalDebitSum - totalCreditSum).toFixed(2)}`}
+                  <span className={`inline-flex items-center gap-1 font-mono font-bold ${isBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
+                    {isBalanced ? (
+                      <>
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
+                        Debits Equal Credits
+                      </>
+                    ) : (
+                      `Difference: $${Math.abs(totalDebitSum - totalCreditSum).toFixed(2)}`
+                    )}
                   </span>
                 </div>
 

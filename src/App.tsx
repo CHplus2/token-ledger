@@ -5,6 +5,8 @@ import { Sidebar } from './components/common/Sidebar';
 import { LedgerAIPanel } from './components/common/LedgerAIPanel';
 import { CommandPalette } from './components/common/CommandPalette';
 import { LandingPage } from './components/landing/LandingPage';
+import { SignInPage } from './components/auth/SignInPage';
+import { UserProfile } from './types';
 
 // Module Views
 import { Dashboard } from './components/dashboard/Dashboard';
@@ -22,9 +24,10 @@ import { SettingsView } from './components/settings/SettingsView';
 
 interface MainLayoutProps {
   onBackToLanding: () => void;
+  onLogout: () => void;
 }
 
-const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding }) => {
+const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding, onLogout }) => {
   const { activeModule } = useLedger();
 
   const renderActiveModule = () => {
@@ -66,7 +69,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding }) => {
       {/* Main App Container */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Global Institutional Header */}
-        <Header onLogoClick={onBackToLanding} />
+        <Header onLogoClick={onBackToLanding} onLogout={onLogout} />
 
         {/* Scrollable View Canvas */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
@@ -83,16 +86,31 @@ const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding }) => {
   );
 };
 
-export function App() {
-  const [entered, setEntered] = useState(false);
+type View = 'landing' | 'signin' | 'app';
 
-  if (!entered) {
-    return <LandingPage onLaunch={() => setEntered(true)} />;
+export function App() {
+  const [view, setView] = useState<View>('landing');
+  const [signedInUser, setSignedInUser] = useState<UserProfile | undefined>(undefined);
+
+  if (view === 'landing') {
+    return <LandingPage onLaunch={() => setView('signin')} />;
+  }
+
+  if (view === 'signin') {
+    return (
+      <SignInPage
+        onSignIn={(user) => {
+          setSignedInUser(user);
+          setView('app');
+        }}
+        onBack={() => setView('landing')}
+      />
+    );
   }
 
   return (
-    <LedgerProvider>
-      <MainLayout onBackToLanding={() => setEntered(false)} />
+    <LedgerProvider initialUser={signedInUser} key={signedInUser?.id}>
+      <MainLayout onBackToLanding={() => setView('landing')} onLogout={() => setView('signin')} />
     </LedgerProvider>
   );
 }

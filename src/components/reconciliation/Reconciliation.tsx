@@ -115,7 +115,7 @@ export const Reconciliation: React.FC = () => {
             {hasException ? '1 Discrepancy' : '100% Matched'}
           </div>
           <div className={`text-[10px] font-medium mt-1 ${hasException ? 'text-amber-600' : 'text-emerald-600'}`}>
-            {hasException ? 'Kraken 50-Unit NVDA Break' : '✓ 12,000,000 Units Verified'}
+            {hasException ? 'Kraken 50-Unit NVDA Break' : '12,000,000 Units Verified'}
           </div>
         </div>
 

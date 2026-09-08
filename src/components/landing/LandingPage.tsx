@@ -182,9 +182,13 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-base font-medium" style={{ color: MUTED_TEXT }} title="Demo only — no accounts needed">
+            <button
+              onClick={onLaunch}
+              className="hidden sm:inline text-base font-medium hover:opacity-70 transition-opacity cursor-pointer"
+              style={{ color: MUTED_TEXT }}
+            >
               Sign in
-            </span>
+            </button>
             <button
               onClick={onLaunch}
               className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"

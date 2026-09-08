@@ -149,9 +149,15 @@ interface LedgerContextType {
 
 const LedgerContext = createContext<LedgerContextType | null>(null);
 
-export function LedgerProvider({ children }: { children: React.ReactNode }) {
+export function LedgerProvider({
+  children,
+  initialUser,
+}: {
+  children: React.ReactNode;
+  initialUser?: UserProfile;
+}) {
   const [activeModule, setActiveModule] = useState<NavigationModule>('dashboard');
-  const [currentUser, setCurrentUser] = useState<UserProfile>(INITIAL_USER);
+  const [currentUser, setCurrentUser] = useState<UserProfile>(initialUser || INITIAL_USER);
   const [organization, setOrganization] = useState<OrganizationSettings>(INITIAL_ORGANIZATION);
   const [entities] = useState<LegalEntity[]>(INITIAL_ENTITIES);
   const [selectedEntityId, setSelectedEntityId] = useState<string>('ent_group');
