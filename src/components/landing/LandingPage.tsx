@@ -114,15 +114,15 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
 
       {/* Top nav */}
       <header className="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2.5">
+        <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+          <div className="flex items-center gap-3">
             <div
-              className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shadow-xs"
+              className="w-12 h-12 rounded-xl flex items-center justify-center font-bold text-lg shadow-xs"
               style={{ backgroundColor: NAVY, color: GOLD }}
             >
               TL
             </div>
-            <span className="text-sm font-bold tracking-tight" style={{ color: DARK_TEXT }}>
+            <span className="text-xl font-bold tracking-tight" style={{ color: DARK_TEXT }}>
               Token Ledger
             </span>
           </div>
@@ -190,11 +190,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           </h1>
           <p className="mt-6 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed" style={{ color: '#c3cbe0' }}>
             Institutional-grade financial data &amp; accounting for digital assets.
-          </p>
-          <p className="mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#8f9bc0' }}>
-            Token Ledger reconciles fragmented blockchain, wallet, exchange, and custodian activity into a single,
-            audit-ready set of financial records — built for institutional finance teams holding tokenized
-            real-world assets and digital assets side by side.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <button
