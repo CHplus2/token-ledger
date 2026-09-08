@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { Search, ChevronUp, ChevronDown } from 'lucide-react';
 import { Holding, UseCustodyPortfolioReturn } from '../../hooks/useCustodyPortfolio';
 import { ASSET_TYPE_LABELS, formatDate, formatUsd } from './formatters';
+import { categoryBadgeClasses, getCustodyAssetCategory } from '../../utils/assetCategory';
 
 type SortKey = 'asset' | 'issuer' | 'chain' | 'wallet' | 'custodian' | 'balance' | 'marketValue' | 'asOfDate';
 
@@ -180,6 +181,11 @@ export const HoldingsTable: React.FC<HoldingsTableProps> = ({ data, onSelectAsse
                   <td className="py-3 px-3">
                     <div className="font-bold text-slate-900">{h.asset?.symbol}</div>
                     <div className="text-[10px] text-slate-600">{ASSET_TYPE_LABELS[h.asset?.assetType || ''] || h.asset?.assetType}</div>
+                    {h.asset?.assetType && (
+                      <span className={`inline-block mt-1 px-1.5 py-0.5 rounded-full text-[9px] font-bold border ${categoryBadgeClasses(getCustodyAssetCategory(h.asset.assetType))}`}>
+                        {getCustodyAssetCategory(h.asset.assetType)}
+                      </span>
+                    )}
                   </td>
                   <td className="py-3 px-3 text-slate-700">{h.issuer?.name}</td>
                   <td className="py-3 px-3">

@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Globe2, ShieldCheck, Wallet as WalletIcon } from 'lucide-react';
 import { Asset, UseCustodyPortfolioReturn } from '../../hooks/useCustodyPortfolio';
 import { ASSET_TYPE_LABELS, formatDate, formatUsd } from './formatters';
+import { categoryBadgeClasses, getCustodyAssetCategory } from '../../utils/assetCategory';
 
 interface AssetDetailDrawerProps {
   asset: Asset | null;
@@ -47,6 +48,12 @@ export const AssetDetailDrawer: React.FC<AssetDetailDrawerProps> = ({ asset, dat
           <div className="flex items-center justify-between">
             <span className="text-slate-600">Asset Type:</span>
             <span className="font-semibold text-slate-900">{ASSET_TYPE_LABELS[asset.assetType] || asset.assetType}</span>
+          </div>
+          <div className="flex items-center justify-between">
+            <span className="text-slate-600">Category:</span>
+            <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${categoryBadgeClasses(getCustodyAssetCategory(asset.assetType))}`}>
+              {getCustodyAssetCategory(asset.assetType)}
+            </span>
           </div>
           <div className="flex items-center justify-between pt-2 border-t border-[#e2e8f0]">
             <span className="text-slate-600">Total Fair Value (consolidated):</span>

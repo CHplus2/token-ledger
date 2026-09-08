@@ -16,6 +16,7 @@ import {
   Layers,
   ChevronRight,
   Globe2,
+  FileText,
 } from 'lucide-react';
 import { useLedger, NavigationModule } from '../../context/LedgerContext';
 
@@ -154,8 +155,11 @@ export const Sidebar: React.FC = () => {
     <aside className="w-64 bg-[#ffffff] text-slate-700 flex flex-col shrink-0 select-none border-r border-[#e2e8f0]">
       {/* Brand Top Header */}
       <div className="h-16 flex items-center gap-3 px-6 border-b border-[#e2e8f0] bg-[#ffffff]">
-        <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center font-bold text-white tracking-wider shadow-sm">
-          TL
+        <div
+          className="w-8 h-8 rounded-full flex items-center justify-center shadow-sm ring-2"
+          style={{ backgroundColor: '#132043', color: '#C9A227', ['--tw-ring-color' as any]: '#C9A22766' }}
+        >
+          <FileText className="w-4 h-4" strokeWidth={2} />
         </div>
         <div>
           <div className="font-bold text-slate-900 text-sm tracking-wide">TOKEN LEDGER</div>

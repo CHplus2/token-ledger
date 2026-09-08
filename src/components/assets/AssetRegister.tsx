@@ -13,6 +13,7 @@ import {
 import { useLedger } from '../../context/LedgerContext';
 import { PageHeader } from '../common/PageHeader';
 import { MetricCard } from '../common/MetricCard';
+import { AssetCategory, CATEGORY_ORDER, categoryBadgeClasses, getLedgerAssetCategory } from '../../utils/assetCategory';
 
 export const AssetRegister: React.FC = () => {
   const {
@@ -25,6 +26,11 @@ export const AssetRegister: React.FC = () => {
 
   const [refreshing, setRefreshing] = useState(false);
   const [selectedAssetSymbol, setSelectedAssetSymbol] = useState<string | null>(null);
+  const [categoryFilter, setCategoryFilter] = useState<AssetCategory | 'ALL'>('ALL');
+
+  const visibleAssets = assetValuations.filter(
+    (a) => categoryFilter === 'ALL' || getLedgerAssetCategory(a.assetType) === categoryFilter
+  );
 
   const handleRefreshPrices = () => {
     setRefreshing(true);
@@ -82,10 +88,25 @@ export const AssetRegister: React.FC = () => {
 
       {/* Asset Valuation Table */}
       <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
-        <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs">
+        <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs flex-wrap gap-3">
           <div>
             <span className="font-bold text-slate-900">Held Digital Asset Inventory</span>
-            <span className="text-slate-600 ml-2">5 Active Assets Under Custody</span>
+            <span className="text-slate-600 ml-2">{visibleAssets.length} Active Assets Under Custody</span>
+          </div>
+          <div className="flex items-center gap-1.5">
+            {(['ALL', ...CATEGORY_ORDER.filter((c) => c !== 'Other')] as const).map((c) => (
+              <button
+                key={c}
+                onClick={() => setCategoryFilter(c)}
+                className={`px-2.5 py-1 rounded-full text-[10px] font-bold border transition-colors cursor-pointer ${
+                  categoryFilter === c
+                    ? 'bg-purple-600 text-white border-purple-600'
+                    : 'bg-white text-slate-600 border-[#cbd5e1] hover:bg-[#f1f5f9]'
+                }`}
+              >
+                {c === 'ALL' ? 'All Categories' : c}
+              </button>
+            ))}
           </div>
           <span className="text-[11px] text-slate-600">Benchmark Index: <strong className="text-slate-800">Pyth & Coinbase Composite</strong></span>
         </div>
@@ -95,6 +116,7 @@ export const AssetRegister: React.FC = () => {
             <thead>
               <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                 <th className="py-3 px-4">Asset</th>
+                <th className="py-3 px-4">Category</th>
                 <th className="py-3 px-4">Custody Wallet & Custodian</th>
                 <th className="py-3 px-4 text-right font-mono">Holding Quantity</th>
                 <th className="py-3 px-4 text-right font-mono">Spot Unit Price (USD)</th>
@@ -106,11 +128,12 @@ export const AssetRegister: React.FC = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#e2e8f0]">
-              {assetValuations.map((a, idx) => {
+              {visibleAssets.map((a, idx) => {
                 const isSolana = a.assetSymbol === 'SOL';
                 const rowKey = a.id || a.assetSymbol || `asset_${idx}`;
                 const quantity = a.totalQuantity ?? a.quantity ?? 0;
                 const spotPrice = a.spotPriceUsd ?? a.currentPriceUsd ?? 0;
+                const category = getLedgerAssetCategory(a.assetType);
 
                 return (
                   <tr
@@ -142,6 +165,12 @@ export const AssetRegister: React.FC = () => {
                           <span className="text-[11px] text-purple-700 font-mono">{a.assetSymbol}</span>
                         </div>
                       </div>
+                    </td>
+
+                    <td className="py-3.5 px-4">
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${categoryBadgeClasses(category)}`}>
+                        {category}
+                      </span>
                     </td>
 
                     <td className="py-3.5 px-4">
@@ -192,6 +221,13 @@ export const AssetRegister: React.FC = () => {
                   </tr>
                 );
               })}
+              {visibleAssets.length === 0 && (
+                <tr>
+                  <td colSpan={9} className="py-8 px-4 text-center text-slate-500 italic">
+                    No holdings in the "{categoryFilter}" category this period.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>
