@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   ArrowRight,
+  ChevronDown,
   Scale,
   BookOpen,
   FileBarChart,
@@ -10,13 +11,20 @@ import {
   ShieldCheck,
   Globe2,
   CheckCircle2,
-  Sparkles,
   Landmark,
 } from 'lucide-react';
 
 interface LandingPageProps {
   onLaunch: () => void;
 }
+
+// Pitch-deck brand palette
+const NAVY = '#132043';
+const CARD_NAVY = '#1D2E56';
+const GOLD = '#C9A227';
+const LIGHT_BG = '#E7EDF4';
+const DARK_TEXT = '#16233A';
+const MUTED_TEXT = '#6B7A90';
 
 const FEATURES: { icon: React.ElementType; title: string; description: string }[] = [
   {
@@ -86,87 +94,156 @@ const STEPS: { step: string; title: string; description: string }[] = [
   },
 ];
 
+const NAV_DROPDOWN: { label: string; href: string }[] = [
+  { label: 'Reconciliation', href: '#trust' },
+  { label: 'Subledger & Journals', href: '#features' },
+  { label: 'Multi-Chain Custody', href: '#features' },
+  { label: 'Financial Reporting', href: '#features' },
+];
+
 export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
   return (
-    <div className="min-h-screen w-full overflow-y-auto bg-[#ffffff] text-slate-900">
-      {/* Brand masthead accent */}
-      <div className="h-1 w-full bg-[#C9A227]" />
+    <div className="min-h-screen w-full overflow-y-auto" style={{ backgroundColor: LIGHT_BG, color: DARK_TEXT }}>
+      {/* Announcement bar */}
+      <div className="text-center text-xs font-semibold py-2 px-4" style={{ backgroundColor: GOLD, color: NAVY }}>
+        Live demo: multi-chain custody, five-way reconciliation & audit-ready reports — all in one place.{' '}
+        <button onClick={onLaunch} className="underline underline-offset-2 cursor-pointer">
+          See it now →
+        </button>
+      </div>
 
       {/* Top nav */}
-      <header className="sticky top-1 z-20 border-b border-[#e2e8f0] bg-[#ffffff]/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
+            <div
+              className="w-8 h-8 rounded-lg flex items-center justify-center font-bold text-sm shadow-xs"
+              style={{ backgroundColor: NAVY, color: GOLD }}
+            >
               TL
             </div>
-            <span className="text-sm font-bold text-slate-900 tracking-tight">Token Ledger</span>
+            <span className="text-sm font-bold tracking-tight" style={{ color: DARK_TEXT }}>
+              Token Ledger
+            </span>
           </div>
-          <button
-            onClick={onLaunch}
-            className="flex items-center gap-1.5 px-4 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-semibold shadow-xs transition-all cursor-pointer"
-          >
-            Launch Demo
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
+
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium" style={{ color: DARK_TEXT }}>
+            <div className="relative group py-2">
+              <button className="flex items-center gap-1 cursor-pointer">
+                Solutions <ChevronDown className="w-3.5 h-3.5" style={{ color: MUTED_TEXT }} />
+              </button>
+              <div className="absolute left-0 top-full mt-1 w-56 rounded-xl border border-black/5 bg-white shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                {NAV_DROPDOWN.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className="block px-4 py-2 text-xs font-semibold hover:bg-[#f1f5f9]"
+                    style={{ color: DARK_TEXT }}
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+            <a href="#how-it-works" className="hover:opacity-70 transition-opacity">
+              How it works
+            </a>
+            <a href="#trust" className="hover:opacity-70 transition-opacity">
+              Security &amp; Controls
+            </a>
+          </nav>
+
+          <div className="flex items-center gap-4">
+            <span className="hidden sm:inline text-sm font-medium" style={{ color: MUTED_TEXT }} title="Demo only — no accounts needed">
+              Sign in
+            </span>
+            <button
+              onClick={onLaunch}
+              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
+              style={{ backgroundColor: GOLD, color: NAVY }}
+            >
+              Request a demo
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
+          </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#C9A227]/40 bg-[#C9A227]/10 text-[#6e5915] text-[11px] font-semibold uppercase tracking-wider mb-6">
-          <Sparkles className="w-3 h-3 text-[#C9A227]" />
-          Digital Asset Accounting Infrastructure
-        </div>
-        <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight leading-tight max-w-3xl mx-auto">
-          Your{' '}
-          <span className="underline decoration-[#C9A227] decoration-4 underline-offset-4">CFO</span> for the
-          tokenized finance world.
-        </h1>
-        <p className="mt-4 text-lg font-medium text-slate-700 max-w-2xl mx-auto leading-relaxed">
-          Institutional-grade financial data &amp; accounting for digital assets.
-        </p>
-        <p className="mt-4 text-base text-slate-600 max-w-2xl mx-auto leading-relaxed">
-          Token Ledger reconciles fragmented blockchain, wallet, exchange, and custodian activity into a single,
-          audit-ready set of financial records — built for institutional finance teams holding tokenized real-world
-          assets and digital assets side by side.
-        </p>
-        <div className="mt-8 flex items-center justify-center gap-3">
-          <button
-            onClick={onLaunch}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-xs transition-all cursor-pointer"
+      <section
+        className="relative overflow-hidden text-center px-6 pt-24 pb-28"
+        style={{
+          backgroundColor: NAVY,
+          backgroundImage: `radial-gradient(${GOLD}33 1px, transparent 1px)`,
+          backgroundSize: '26px 26px',
+        }}
+      >
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div
+            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-semibold uppercase tracking-wider mb-7"
+            style={{ borderColor: `${GOLD}66`, backgroundColor: `${GOLD}1a`, color: GOLD }}
           >
-            Launch Interactive Demo
-            <ArrowRight className="w-4 h-4" />
-          </button>
+            Digital Asset Accounting Infrastructure
+          </div>
+          <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1] text-white">
+            Your <span style={{ color: GOLD }}>CFO</span> for the tokenized finance world
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed" style={{ color: '#c3cbe0' }}>
+            Institutional-grade financial data &amp; accounting for digital assets.
+          </p>
+          <p className="mt-4 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed" style={{ color: '#8f9bc0' }}>
+            Token Ledger reconciles fragmented blockchain, wallet, exchange, and custodian activity into a single,
+            audit-ready set of financial records — built for institutional finance teams holding tokenized
+            real-world assets and digital assets side by side.
+          </p>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={onLaunch}
+              className="flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
+              style={{ backgroundColor: GOLD, color: NAVY }}
+            >
+              Launch Interactive Demo
+              <ArrowRight className="w-4 h-4" />
+            </button>
+            <a
+              href="#how-it-works"
+              className="flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold border transition-colors hover:bg-white/5"
+              style={{ borderColor: '#3a4970', color: 'white' }}
+            >
+              See how it works
+            </a>
+          </div>
+          <p className="mt-5 text-[11px]" style={{ color: '#6f7ea3' }}>
+            Fully interactive demo running on seeded sample data for Meridian Capital Group — no signup required.
+          </p>
         </div>
-        <p className="mt-4 text-[11px] text-slate-600">
-          Fully interactive demo running on seeded sample data for Meridian Capital Group — no signup required.
-        </p>
       </section>
 
       {/* Trust bar */}
-      <section className="max-w-6xl mx-auto px-6 pb-16">
-        <div className="rounded-xl border border-[#e2e8f0] bg-[#ffffff] p-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs text-slate-600">
+      <section id="trust" className="max-w-6xl mx-auto px-6 -mt-10 relative z-10 pb-16">
+        <div className="rounded-xl border border-black/5 bg-white shadow-lg p-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs" style={{ color: MUTED_TEXT }}>
           <span className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600" /> Double-entry accounting, always in balance
+            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: GOLD }} /> Double-entry accounting, always in balance
           </span>
           <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-purple-600" /> Full audit trail on every posting
+            <ShieldCheck className="w-3.5 h-3.5" style={{ color: GOLD }} /> Full audit trail on every posting
           </span>
           <span className="flex items-center gap-1.5">
-            <Globe2 className="w-3.5 h-3.5 text-indigo-600" /> Multi-chain, multi-custodian consolidation
+            <Globe2 className="w-3.5 h-3.5" style={{ color: GOLD }} /> Multi-chain, multi-custodian consolidation
           </span>
           <span className="flex items-center gap-1.5">
-            <Scale className="w-3.5 h-3.5 text-[#C9A227]" /> Five-way reconciliation across every source
+            <Scale className="w-3.5 h-3.5" style={{ color: GOLD }} /> Five-way reconciliation across every source
           </span>
         </div>
       </section>
 
       {/* Features */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section id="features" className="max-w-6xl mx-auto px-6 pb-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-slate-900">Everything a controller needs to close the books</h2>
-          <p className="mt-2 text-sm text-slate-600 max-w-xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
+            Everything a controller needs to close the books
+          </h2>
+          <p className="mt-2 text-sm max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
             From raw wallet activity to a reconciled financial statement, in one platform.
           </p>
         </div>
@@ -174,33 +251,49 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           {FEATURES.map((f, idx) => (
             <div
               key={f.title}
-              className={`bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-5 shadow-xs hover:border-purple-500/30 transition-colors ${
+              className={`bg-white rounded-xl border border-black/5 p-5 shadow-xs hover:shadow-md transition-shadow ${
                 idx === FEATURES.length - 1 ? 'sm:col-span-2 lg:col-span-3' : ''
               }`}
             >
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-purple-600/20 to-indigo-600/20 border border-purple-500/20 flex items-center justify-center mb-3">
-                <f.icon className="w-4.5 h-4.5 text-purple-700" />
+              <div
+                className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+                style={{ backgroundColor: `${NAVY}14` }}
+              >
+                <f.icon className="w-4.5 h-4.5" style={{ color: NAVY }} />
               </div>
-              <h3 className="text-sm font-bold text-slate-900 mb-1.5">{f.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{f.description}</p>
+              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+                {f.title}
+              </h3>
+              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+                {f.description}
+              </p>
             </div>
           ))}
         </div>
       </section>
 
       {/* How it works */}
-      <section className="max-w-6xl mx-auto px-6 pb-20">
+      <section id="how-it-works" className="max-w-6xl mx-auto px-6 pb-20">
         <div className="text-center mb-10">
-          <h2 className="text-2xl font-bold text-slate-900">How it works</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
+            How it works
+          </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {STEPS.map((s) => (
-            <div key={s.step} className="relative bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-5">
-              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#C9A227] to-indigo-600 mb-2">
+            <div key={s.step} className="relative bg-white rounded-xl border border-black/5 p-5">
+              <div
+                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br mb-2"
+                style={{ backgroundImage: `linear-gradient(to bottom right, ${GOLD}, ${NAVY})` }}
+              >
                 {s.step}
               </div>
-              <h3 className="text-sm font-bold text-slate-900 mb-1.5">{s.title}</h3>
-              <p className="text-xs text-slate-600 leading-relaxed">{s.description}</p>
+              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+                {s.title}
+              </h3>
+              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+                {s.description}
+              </p>
             </div>
           ))}
         </div>
@@ -208,17 +301,25 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
 
       {/* CTA banner */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="rounded-2xl border border-[#C9A227]/30 bg-gradient-to-br from-purple-600/10 to-indigo-600/10 p-10 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-0 right-0 h-1 bg-[#C9A227]" />
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">See it running on real seeded data</h2>
-          <p className="text-sm text-slate-600 max-w-xl mx-auto mb-6">
+        <div
+          className="rounded-2xl p-10 text-center relative overflow-hidden"
+          style={{
+            backgroundColor: CARD_NAVY,
+            backgroundImage: `radial-gradient(${GOLD}22 1px, transparent 1px)`,
+            backgroundSize: '22px 22px',
+          }}
+        >
+          <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: GOLD }} />
+          <h2 className="text-2xl font-bold text-white mb-2">See it running on real seeded data</h2>
+          <p className="text-sm max-w-xl mx-auto mb-6" style={{ color: '#a9b4d1' }}>
             The demo ships with a full month of sample activity for Meridian Capital Group — transactions,
             reconciliation breaks, journal entries, and a multi-chain custody portfolio — so every screen shows real
             numbers, not placeholders.
           </p>
           <button
             onClick={onLaunch}
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-xs transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
+            style={{ backgroundColor: GOLD, color: NAVY }}
           >
             Launch Interactive Demo
             <ArrowRight className="w-4 h-4" />
@@ -227,8 +328,11 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#e2e8f0]">
-        <div className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-600">
+      <footer className="border-t border-black/5">
+        <div
+          className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]"
+          style={{ color: MUTED_TEXT }}
+        >
           <span>© 2026 Token Ledger. Demo environment — all data shown is seeded/mock data for illustration only.</span>
           <span>Institutional Digital Asset Accounting Infrastructure</span>
         </div>
