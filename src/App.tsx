@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LedgerProvider, useLedger } from './context/LedgerContext';
 import { Header } from './components/common/Header';
 import { Sidebar } from './components/common/Sidebar';
 import { LedgerAIPanel } from './components/common/LedgerAIPanel';
 import { CommandPalette } from './components/common/CommandPalette';
+import { LandingPage } from './components/landing/LandingPage';
 
 // Module Views
 import { Dashboard } from './components/dashboard/Dashboard';
@@ -79,6 +80,12 @@ const MainLayout: React.FC = () => {
 };
 
 export function App() {
+  const [entered, setEntered] = useState(false);
+
+  if (!entered) {
+    return <LandingPage onLaunch={() => setEntered(true)} />;
+  }
+
   return (
     <LedgerProvider>
       <MainLayout />
