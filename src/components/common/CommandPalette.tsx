@@ -77,21 +77,21 @@ export const CommandPalette: React.FC = () => {
 
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-start justify-center pt-24 px-4">
-      <div className="bg-[#111114] rounded-xl shadow-2xl border border-[#222226] w-full max-w-2xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
+      <div className="bg-[#ffffff] rounded-xl shadow-2xl border border-[#e2e8f0] w-full max-w-2xl overflow-hidden animate-in fade-in-0 zoom-in-95 duration-150">
         {/* Search Input */}
-        <div className="flex items-center px-4 border-b border-[#222226]">
-          <Search className="w-5 h-5 text-slate-400 mr-3 shrink-0" />
+        <div className="flex items-center px-4 border-b border-[#e2e8f0]">
+          <Search className="w-5 h-5 text-slate-600 mr-3 shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search subledger records, transactions, hashes, or modules (e.g. 'SOL', 'JE-00840')..."
-            className="w-full py-4 text-sm bg-transparent focus:outline-none placeholder:text-slate-500 text-white"
+            className="w-full py-4 text-sm bg-transparent focus:outline-none placeholder:text-slate-600 text-slate-900"
             autoFocus
           />
           <button
             onClick={() => setIsCommandPaletteOpen(false)}
-            className="p-1 rounded text-slate-400 hover:text-white hover:bg-[#1c1c21]"
+            className="p-1 rounded text-slate-600 hover:text-slate-900 hover:bg-[#f1f5f9]"
           >
             <X className="w-4 h-4" />
           </button>
@@ -101,36 +101,36 @@ export const CommandPalette: React.FC = () => {
         <div className="max-h-96 overflow-y-auto p-3 space-y-4">
           {/* Module Navigation */}
           <div>
-            <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+            <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
               Quick Navigation
             </div>
             <div className="grid grid-cols-2 gap-1.5">
               <button
                 onClick={() => handleSelectNav('transactions')}
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#16161c] text-xs font-medium text-slate-300 text-left"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#f8fafc] text-xs font-medium text-slate-700 text-left"
               >
-                <ArrowRightLeft className="w-4 h-4 text-purple-400" />
+                <ArrowRightLeft className="w-4 h-4 text-purple-600" />
                 <span>Transactions Subledger</span>
               </button>
               <button
                 onClick={() => handleSelectNav('reconciliation')}
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#16161c] text-xs font-medium text-slate-300 text-left"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#f8fafc] text-xs font-medium text-slate-700 text-left"
               >
-                <Scale className="w-4 h-4 text-amber-400" />
+                <Scale className="w-4 h-4 text-amber-600" />
                 <span>Reconciliation Matrix</span>
               </button>
               <button
                 onClick={() => handleSelectNav('subledger')}
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#16161c] text-xs font-medium text-slate-300 text-left"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#f8fafc] text-xs font-medium text-slate-700 text-left"
               >
-                <BookOpen className="w-4 h-4 text-emerald-400" />
+                <BookOpen className="w-4 h-4 text-emerald-600" />
                 <span>Journal Entries</span>
               </button>
               <button
                 onClick={() => handleSelectNav('reports')}
-                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#16161c] text-xs font-medium text-slate-300 text-left"
+                className="flex items-center gap-2 p-2 rounded-lg hover:bg-[#f8fafc] text-xs font-medium text-slate-700 text-left"
               >
-                <FileText className="w-4 h-4 text-indigo-400" />
+                <FileText className="w-4 h-4 text-indigo-600" />
                 <span>Financial Reports</span>
               </button>
             </div>
@@ -139,7 +139,7 @@ export const CommandPalette: React.FC = () => {
           {/* Matched Transactions */}
           {filteredTx.length > 0 && (
             <div>
-              <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+              <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
                 Transactions ({filteredTx.length})
               </div>
               <div className="space-y-1">
@@ -147,21 +147,21 @@ export const CommandPalette: React.FC = () => {
                   <button
                     key={t.id}
                     onClick={() => handleSelectTx(t)}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#16161c] border border-transparent hover:border-[#222226] text-left text-xs transition-colors"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#f8fafc] border border-transparent hover:border-[#e2e8f0] text-left text-xs transition-colors"
                   >
                     <div>
-                      <div className="font-semibold text-white">{t.businessDescription}</div>
-                      <div className="text-[11px] text-slate-400 flex items-center gap-2">
+                      <div className="font-semibold text-slate-900">{t.businessDescription}</div>
+                      <div className="text-[11px] text-slate-600 flex items-center gap-2">
                         <span>{t.externalTxId}</span>
                         <span>•</span>
                         <span>{t.sourceName}</span>
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="font-mono font-medium text-white">
+                      <div className="font-mono font-medium text-slate-900">
                         ${(t.fiatValue ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                       </div>
-                      <span className="text-[10px] text-slate-500">{t.classification}</span>
+                      <span className="text-[10px] text-slate-600">{t.classification}</span>
                     </div>
                   </button>
                 ))}
@@ -172,7 +172,7 @@ export const CommandPalette: React.FC = () => {
           {/* Matched Journal Entries */}
           {filteredJournals.length > 0 && (
             <div>
-              <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-500">
+              <div className="px-2 pb-1 text-[10px] font-bold uppercase tracking-wider text-slate-600">
                 Journal Entries ({filteredJournals.length})
               </div>
               <div className="space-y-1">
@@ -180,13 +180,13 @@ export const CommandPalette: React.FC = () => {
                   <button
                     key={j.id}
                     onClick={() => handleSelectNav('subledger')}
-                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#16161c] border border-transparent hover:border-[#222226] text-left text-xs transition-colors"
+                    className="w-full flex items-center justify-between p-2 rounded-lg hover:bg-[#f8fafc] border border-transparent hover:border-[#e2e8f0] text-left text-xs transition-colors"
                   >
                     <div>
-                      <span className="font-mono font-semibold text-purple-400">{j.journalNumber}</span>
-                      <span className="ml-2 text-slate-200">{j.description}</span>
+                      <span className="font-mono font-semibold text-purple-600">{j.journalNumber}</span>
+                      <span className="ml-2 text-slate-800">{j.description}</span>
                     </div>
-                    <span className="font-mono text-white font-medium">
+                    <span className="font-mono text-slate-900 font-medium">
                       ${(j.totalDebit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
                   </button>
@@ -197,7 +197,7 @@ export const CommandPalette: React.FC = () => {
         </div>
 
         {/* Footer */}
-        <div className="px-4 py-2.5 bg-[#0e0e12] border-t border-[#222226] flex items-center justify-between text-[11px] text-slate-500">
+        <div className="px-4 py-2.5 bg-[#ffffff] border-t border-[#e2e8f0] flex items-center justify-between text-[11px] text-slate-600">
           <span>Tip: Press ESC to close palette</span>
           <span>Token Ledger Subledger Engine</span>
         </div>

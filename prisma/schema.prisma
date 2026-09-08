@@ -1,0 +1,99 @@
+// Multi-Chain Tokenized Asset Custody & Portfolio Dashboard — data model.
+//
+// One Asset can have many Holdings; each Holding pins down exactly one
+// (chain, wallet, custodian) combination for one asset manager. This is
+// intentional: an asset like the Sukuk lives on three chains at once, each
+// with its own balance, wallet, and custodian.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AssetType {
+  MONEY_MARKET_FUND
+  STABLECOIN
+  SUKUK
+  EQUITY
+  OTHER
+}
+
+model AssetManager {
+  id        String    @id @default(cuid())
+  name      String
+  holdings  Holding[]
+  createdAt DateTime  @default(now())
+}
+
+model Issuer {
+  id     String  @id @default(cuid())
+  name   String  @unique
+  assets Asset[]
+}
+
+model Asset {
+  id        String    @id @default(cuid())
+  name      String
+  symbol    String    @unique
+  assetType AssetType
+  issuerId  String
+  issuer    Issuer    @relation(fields: [issuerId], references: [id])
+  holdings  Holding[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+model Chain {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  wallets  Wallet[]
+  holdings Holding[]
+}
+
+model Wallet {
+  id        String    @id @default(cuid())
+  name      String
+  address   String?
+  chainId   String
+  chain     Chain     @relation(fields: [chainId], references: [id])
+  holdings  Holding[]
+  createdAt DateTime  @default(now())
+
+  @@unique([name, chainId])
+}
+
+model Custodian {
+  id       String    @id @default(cuid())
+  name     String    @unique
+  holdings Holding[]
+}
+
+// The join entity: ties one Asset to exactly one (chain, wallet, custodian,
+// asset manager) combination, with its own balance/value as of a point in
+// time. An asset held on N chains has N Holding rows.
+model Holding {
+  id             String       @id @default(cuid())
+  assetId        String
+  chainId        String
+  walletId       String
+  custodianId    String
+  assetManagerId String
+  balance        Decimal      @db.Decimal(30, 8)
+  marketValue    Decimal      @db.Decimal(20, 2)
+  asOfDate       DateTime
+
+  asset        Asset        @relation(fields: [assetId], references: [id])
+  chain        Chain        @relation(fields: [chainId], references: [id])
+  wallet       Wallet       @relation(fields: [walletId], references: [id])
+  custodian    Custodian    @relation(fields: [custodianId], references: [id])
+  assetManager AssetManager @relation(fields: [assetManagerId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([assetId, chainId, walletId, custodianId, assetManagerId])
+}

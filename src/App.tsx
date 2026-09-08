@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { LedgerProvider, useLedger } from './context/LedgerContext';
 import { Header } from './components/common/Header';
 import { Sidebar } from './components/common/Sidebar';
 import { LedgerAIPanel } from './components/common/LedgerAIPanel';
 import { CommandPalette } from './components/common/CommandPalette';
+import { LandingPage } from './components/landing/LandingPage';
 
 // Module Views
 import { Dashboard } from './components/dashboard/Dashboard';
@@ -13,12 +14,17 @@ import { SubledgerJournals } from './components/subledger/SubledgerJournals';
 import { FinancialReports } from './components/reports/FinancialReports';
 import { AccountingRules } from './components/accounting/AccountingRules';
 import { AssetRegister } from './components/assets/AssetRegister';
+import { CustodyPortfolio } from './components/custody/CustodyPortfolio';
 import { MonthEndClose } from './components/close/MonthEndClose';
 import { AuditTrail } from './components/audit/AuditTrail';
 import { DataSources } from './components/sources/DataSources';
 import { SettingsView } from './components/settings/SettingsView';
 
-const MainLayout: React.FC = () => {
+interface MainLayoutProps {
+  onBackToLanding: () => void;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding }) => {
   const { activeModule } = useLedger();
 
   const renderActiveModule = () => {
@@ -37,6 +43,8 @@ const MainLayout: React.FC = () => {
         return <AccountingRules />;
       case 'assets':
         return <AssetRegister />;
+      case 'custody':
+        return <CustodyPortfolio />;
       case 'close':
         return <MonthEndClose />;
       case 'audit':
@@ -51,14 +59,14 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#0a0a0c] font-sans text-slate-100 antialiased">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#ffffff] font-sans text-slate-900 antialiased">
       {/* Left Navigation Sidebar */}
       <Sidebar />
 
       {/* Main App Container */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Global Institutional Header */}
-        <Header />
+        <Header onLogoClick={onBackToLanding} />
 
         {/* Scrollable View Canvas */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
@@ -76,9 +84,15 @@ const MainLayout: React.FC = () => {
 };
 
 export function App() {
+  const [entered, setEntered] = useState(false);
+
+  if (!entered) {
+    return <LandingPage onLaunch={() => setEntered(true)} />;
+  }
+
   return (
     <LedgerProvider>
-      <MainLayout />
+      <MainLayout onBackToLanding={() => setEntered(false)} />
     </LedgerProvider>
   );
 }

@@ -60,6 +60,7 @@ export type SourceProvider =
   | 'CSV'
   | 'CUSTOM_TOKENIZATION'
   | 'ETHEREUM'
+  | 'VSYSTEM'
   | 'BITCOIN';
 
 export interface DataSource {
@@ -81,6 +82,8 @@ export interface DataSource {
   balanceEstimateUsd?: number;
   reconciliationExceptionCount?: number;
   isReadOnly?: boolean;
+  walletName?: string;
+  custodian?: string;
 }
 
 export type TransactionClassification =
@@ -112,6 +115,7 @@ export type LocationType =
   | 'COINBASE_ACCOUNT'
   | 'KRAKEN_ACCOUNT'
   | 'CUSTODIAN_ACCOUNT'
+  | 'ISSUER_WALLET'
   | 'TOKENIZATION_PLATFORM'
   | 'BANK_SETTLEMENT'
   | 'OTHER';
@@ -132,6 +136,8 @@ export interface PositionByLocation {
   lastVerified: string;
   reconciliationStatus: ReconciliationStatus;
   notes?: string;
+  chain?: string;
+  custodian?: string;
 }
 
 export interface NormalizedMovement {
@@ -151,6 +157,9 @@ export interface NormalizedTransaction {
   sourceType: SourceType;
   network: string; // 'Solana Mainnet-Beta', 'Coinbase Institutional', etc.
   walletAccount: string;
+  walletName?: string;
+  custodian?: string;
+  chain?: string;
   entityId: string;
   entityName: string;
   timestamp: string;
@@ -365,6 +374,9 @@ export interface AssetValuation {
   isinOrCusip?: string;
   issuer?: string;
   underlyingAsset?: string;
+  walletName?: string;
+  custodian?: string;
+  chains?: string[];
   isSimulatedDemoNetwork?: boolean;
   demoNetworkNote?: string;
   nominalValue?: number;

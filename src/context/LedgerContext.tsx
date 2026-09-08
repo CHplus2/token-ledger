@@ -47,6 +47,7 @@ export type NavigationModule =
   | 'subledger'
   | 'accounting'
   | 'assets'
+  | 'custody'
   | 'reports'
   | 'close'
   | 'audit'
@@ -278,9 +279,9 @@ export function LedgerProvider({ children }: { children: React.ReactNode }) {
             creditName = 'Tokenized Fund Dividend & Sukuk Profit Income';
           } else if (classification === 'INTERNAL_TRANSFER') {
             debitCode = '1210';
-            debitName = 'Tokenized Funds — BlackRock BUIDL (Solana Treasury)';
+            debitName = 'Tokenized Funds — BlackRock BUIDL (Solana Chain)';
             creditCode = '1210';
-            creditName = 'Tokenized Funds — BlackRock BUIDL (Coinbase Account)';
+            creditName = 'Tokenized Funds — BlackRock BUIDL (Ethereum Chain)';
           }
 
           return {

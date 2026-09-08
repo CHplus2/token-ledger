@@ -3,14 +3,13 @@
  * Express + Vite Integration
  */
 
+import 'dotenv/config';
 import express, { Request, Response } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import dotenv from 'dotenv';
 import { GoogleGenAI } from '@google/genai';
 import { createServer as createViteServer } from 'vite';
-
-dotenv.config();
+import { custodyRouter } from './server/custodyRoutes.ts';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -174,6 +173,9 @@ When asked about Solana, highlight Solana's high-speed epoch staking, SPL token 
     });
   }
 });
+
+// Multi-Chain Custody Portfolio API (Postgres/Prisma-backed)
+app.use('/api/custody', custodyRouter);
 
 // ERP Journal Export endpoint
 app.post('/api/export/erp', (req: Request, res: Response) => {

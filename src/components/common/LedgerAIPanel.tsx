@@ -122,21 +122,21 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
   ];
 
   return (
-    <div className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-[#111114] border-l border-[#222226] shadow-2xl z-50 flex flex-col animate-in slide-in-from-right duration-200">
+    <div className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-[#ffffff] border-l border-[#e2e8f0] shadow-2xl z-50 flex flex-col animate-in slide-in-from-right duration-200">
       {/* Header */}
-      <div className="h-16 px-6 bg-[#0e0e12] text-white border-b border-[#222226] flex items-center justify-between shrink-0">
+      <div className="h-16 px-6 bg-[#ffffff] text-slate-900 border-b border-[#e2e8f0] flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2.5">
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 flex items-center justify-center shadow-xs">
-            <Sparkles className="w-4 h-4 text-white" />
+            <Sparkles className="w-4 h-4 text-slate-900" />
           </div>
           <div>
             <div className="text-sm font-bold tracking-wide flex items-center gap-2">
               <span>Ledger AI</span>
-              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-900/60 text-purple-300 border border-purple-700/50">
+              <span className="text-[10px] font-mono px-1.5 py-0.5 rounded bg-purple-900/60 text-purple-700 border border-purple-700/50">
                 GAAP / IFRS
               </span>
             </div>
-            <div className="text-[11px] text-slate-400">
+            <div className="text-[11px] text-slate-600">
               Institutional Advisory & Control Assistant
             </div>
           </div>
@@ -144,19 +144,19 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
 
         <button
           onClick={() => setIsAIPanelOpen(false)}
-          className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-[#1c1c21] transition-colors"
+          className="p-1.5 text-slate-600 hover:text-slate-900 rounded-lg hover:bg-[#f1f5f9] transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
       </div>
 
       {/* Context Badge */}
-      <div className="px-6 py-2 bg-[#16161c] border-b border-[#222226] flex items-center justify-between text-xs text-slate-300 shrink-0">
+      <div className="px-6 py-2 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs text-slate-700 shrink-0">
         <div className="flex items-center gap-1.5">
-          <Shield className="w-3.5 h-3.5 text-purple-400" />
-          <span>Active Context: <strong className="text-white">{aiContext.type || 'General Subledger'}</strong></span>
+          <Shield className="w-3.5 h-3.5 text-purple-600" />
+          <span>Active Context: <strong className="text-slate-900">{aiContext.type || 'General Subledger'}</strong></span>
         </div>
-        <span className="text-[11px] text-slate-400">Read-Only Advisory</span>
+        <span className="text-[11px] text-slate-600">Read-Only Advisory</span>
       </div>
 
       {/* Message Stream */}
@@ -167,7 +167,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
             className={`flex gap-3 ${m.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             {m.sender === 'assistant' && (
-              <div className="w-7 h-7 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-full bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-700 shrink-0 mt-0.5">
                 <Bot className="w-4 h-4" />
               </div>
             )}
@@ -176,7 +176,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
               className={`max-w-[85%] rounded-xl p-3.5 text-xs leading-relaxed ${
                 m.sender === 'user'
                   ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium shadow-xs'
-                  : 'bg-[#16161c] border border-[#222226] text-slate-200 shadow-2xs'
+                  : 'bg-[#f8fafc] border border-[#e2e8f0] text-slate-900 shadow-2xs'
               }`}
             >
               <div className="whitespace-pre-line prose-xs">
@@ -184,7 +184,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
               </div>
               <div
                 className={`mt-2 flex items-center justify-between text-[10px] ${
-                  m.sender === 'user' ? 'text-purple-200' : 'text-slate-400'
+                  m.sender === 'user' ? 'text-purple-700' : 'text-slate-600'
                 }`}
               >
                 <span>{m.timestamp}</span>
@@ -193,7 +193,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
             </div>
 
             {m.sender === 'user' && (
-              <div className="w-7 h-7 rounded-full bg-[#1c1c21] border border-[#2d2d35] flex items-center justify-center text-white shrink-0 mt-0.5">
+              <div className="w-7 h-7 rounded-full bg-[#f1f5f9] border border-[#cbd5e1] flex items-center justify-center text-slate-900 shrink-0 mt-0.5">
                 <User className="w-4 h-4" />
               </div>
             )}
@@ -201,20 +201,20 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
         ))}
 
         {loading && (
-          <div className="flex items-center gap-2 p-3 rounded-lg bg-[#16161c] border border-[#222226] text-xs text-slate-300">
-            <Loader2 className="w-4 h-4 animate-spin text-purple-400" />
+          <div className="flex items-center gap-2 p-3 rounded-lg bg-[#f8fafc] border border-[#e2e8f0] text-xs text-slate-700">
+            <Loader2 className="w-4 h-4 animate-spin text-purple-600" />
             <span>Analyzing subledger entries, valuation data, and accounting policies...</span>
           </div>
         )}
       </div>
 
       {/* Suggested Quick Inquiries */}
-      <div className="px-6 py-2.5 border-t border-[#222226] bg-[#0e0e12] flex flex-wrap gap-1.5 shrink-0">
+      <div className="px-6 py-2.5 border-t border-[#e2e8f0] bg-[#ffffff] flex flex-wrap gap-1.5 shrink-0">
         {quickQuestions.map((q, idx) => (
           <button
             key={idx}
             onClick={() => handleSend(q)}
-            className="text-[11px] px-2.5 py-1 rounded-full bg-[#1c1c21] hover:bg-[#25252b] hover:text-purple-300 hover:border-purple-500/50 border border-[#2d2d35] text-slate-300 transition-colors shadow-2xs text-left"
+            className="text-[11px] px-2.5 py-1 rounded-full bg-[#f1f5f9] hover:bg-[#e2e8f0] hover:text-purple-700 hover:border-purple-500/50 border border-[#cbd5e1] text-slate-700 transition-colors shadow-2xs text-left"
           >
             {q}
           </button>
@@ -222,7 +222,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
       </div>
 
       {/* Input Form */}
-      <div className="p-4 border-t border-[#222226] bg-[#111114] shrink-0">
+      <div className="p-4 border-t border-[#e2e8f0] bg-[#ffffff] shrink-0">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -235,7 +235,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
             value={inputQuery}
             onChange={(e) => setInputQuery(e.target.value)}
             placeholder="Ask Ledger AI regarding transactions, breaks, or IFRS..."
-            className="flex-1 px-3.5 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder:text-slate-500 text-xs"
+            className="flex-1 px-3.5 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] focus:outline-none focus:ring-2 focus:ring-purple-500 text-slate-900 placeholder:text-slate-600 text-xs"
           />
           <button
             type="submit"
@@ -245,7 +245,7 @@ Unable to reach remote AI inference. Using deterministic rule recommendation:
             <Send className="w-4 h-4" />
           </button>
         </form>
-        <p className="text-[10px] text-slate-500 mt-2 text-center">
+        <p className="text-[10px] text-slate-600 mt-2 text-center">
           Ledger AI recommends accounting classifications. Humans approve all postings.
         </p>
       </div>

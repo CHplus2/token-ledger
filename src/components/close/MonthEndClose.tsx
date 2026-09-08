@@ -46,7 +46,7 @@ export const MonthEndClose: React.FC = () => {
               onClick={() => openAIWithContext('CLOSE_READINESS', { closeTasks: tasksList, closeReadinessScore })}
               className="px-3.5 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-purple-200" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-700" />
               <span>AI Close Analysis</span>
             </button>
 
@@ -55,10 +55,10 @@ export const MonthEndClose: React.FC = () => {
               disabled={closeReadinessScore < 100 || isLocked}
               className={`px-3.5 py-2 rounded-lg text-xs font-bold shadow-xs transition-all flex items-center gap-1.5 ${
                 isLocked
-                  ? 'bg-[#1c1c21] text-slate-500 border border-[#2d2d35] cursor-not-allowed'
+                  ? 'bg-[#f1f5f9] text-slate-600 border border-[#cbd5e1] cursor-not-allowed'
                   : closeReadinessScore === 100
                   ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer'
-                  : 'bg-[#16161c] text-slate-500 border border-[#2d2d35] cursor-not-allowed'
+                  : 'bg-[#f8fafc] text-slate-600 border border-[#cbd5e1] cursor-not-allowed'
               }`}
             >
               <Lock className="w-4 h-4" />
@@ -69,33 +69,33 @@ export const MonthEndClose: React.FC = () => {
       />
 
       {/* Progress & Scorecard Banner */}
-      <div className="bg-[#111114] rounded-xl border border-[#222226] p-6 shadow-xs">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-6 shadow-xs">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
           <div>
-            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-0.5">
+            <div className="text-xs font-bold text-slate-600 uppercase tracking-wider mb-0.5">
               Close Readiness Scorecard
             </div>
-            <h3 className="text-xl font-bold text-white">
+            <h3 className="text-xl font-bold text-slate-900">
               August 2026 Close Status:{' '}
-              <span className={closeReadinessScore === 100 ? 'text-emerald-400' : 'text-purple-400'}>
+              <span className={closeReadinessScore === 100 ? 'text-emerald-600' : 'text-purple-600'}>
                 {closeReadinessScore}% Complete
               </span>
             </h3>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs text-slate-600 mt-1">
               {completedCount} of {tasksList.length} mandatory accounting controls verified.
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right">
-              <span className="block text-xs font-bold text-white">Target Sign-Off:</span>
-              <span className="text-xs text-slate-400 font-mono">Sep 5, 2026 (Day +5)</span>
+              <span className="block text-xs font-bold text-slate-900">Target Sign-Off:</span>
+              <span className="text-xs text-slate-600 font-mono">Sep 5, 2026 (Day +5)</span>
             </div>
           </div>
         </div>
 
         {/* Progress Bar */}
-        <div className="w-full h-3 bg-[#1c1c21] rounded-full overflow-hidden border border-[#2d2d35]">
+        <div className="w-full h-3 bg-[#f1f5f9] rounded-full overflow-hidden border border-[#cbd5e1]">
           <div
             className={`h-full rounded-full transition-all duration-500 ${
               closeReadinessScore === 100
@@ -108,13 +108,13 @@ export const MonthEndClose: React.FC = () => {
       </div>
 
       {/* Close Checklist Tasks */}
-      <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-        <div className="p-4 bg-[#16161c] border-b border-[#222226] flex items-center justify-between text-xs">
-          <span className="font-bold text-white">Mandatory Month-End Close Checklist</span>
-          <span className="text-slate-400">Dual-Control Audit Sign-Off Required</span>
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+        <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs">
+          <span className="font-bold text-slate-900">Mandatory Month-End Close Checklist</span>
+          <span className="text-slate-600">Dual-Control Audit Sign-Off Required</span>
         </div>
 
-        <div className="divide-y divide-[#1e1e24]">
+        <div className="divide-y divide-[#e2e8f0]">
           {tasksList.map((task) => {
             const isCompleted = task.status === 'COMPLETED';
 
@@ -122,7 +122,7 @@ export const MonthEndClose: React.FC = () => {
               <div
                 key={task.id}
                 className={`p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs transition-colors ${
-                  isCompleted ? 'bg-[#16161c]/30' : 'hover:bg-[#16161c]/60'
+                  isCompleted ? 'bg-[#f8fafc]/30' : 'hover:bg-[#f8fafc]/60'
                 }`}
               >
                 <div className="flex items-start gap-3">
@@ -131,7 +131,7 @@ export const MonthEndClose: React.FC = () => {
                     className={`w-5 h-5 rounded-md flex items-center justify-center mt-0.5 transition-colors cursor-pointer ${
                       isCompleted
                         ? 'bg-emerald-600 text-white'
-                        : 'border border-[#2d2d35] hover:border-purple-400 bg-[#16161c]'
+                        : 'border border-[#cbd5e1] hover:border-purple-400 bg-[#f8fafc]'
                     }`}
                   >
                     {isCompleted && <CheckCircle2 className="w-3.5 h-3.5" />}
@@ -139,14 +139,14 @@ export const MonthEndClose: React.FC = () => {
 
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-bold text-white text-sm">{task.title}</span>
-                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#1c1c21] text-purple-300 border border-[#2d2d35]">
+                      <span className="font-bold text-slate-900 text-sm">{task.title}</span>
+                      <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#f1f5f9] text-purple-700 border border-[#cbd5e1]">
                         {task.category}
                       </span>
                     </div>
-                    <p className="text-slate-400 text-xs mt-0.5">{task.description}</p>
-                    <div className="text-[11px] text-slate-500 mt-1">
-                      Assignee: <strong className="text-slate-300">{task.assignedToName}</strong> • Due: {task.dueDate}
+                    <p className="text-slate-600 text-xs mt-0.5">{task.description}</p>
+                    <div className="text-[11px] text-slate-600 mt-1">
+                      Assignee: <strong className="text-slate-700">{task.assignedToName}</strong> • Due: {task.dueDate}
                     </div>
                   </div>
                 </div>
@@ -157,7 +157,7 @@ export const MonthEndClose: React.FC = () => {
                   {task.id === 'task_2' && unclassifiedCount > 0 && (
                     <button
                       onClick={() => setActiveModule('transactions')}
-                      className="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/30 hover:bg-amber-500/30 font-semibold text-xs cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-700 border border-amber-500/30 hover:bg-amber-500/30 font-semibold text-xs cursor-pointer"
                     >
                       Resolve {unclassifiedCount} Items
                     </button>
@@ -166,7 +166,7 @@ export const MonthEndClose: React.FC = () => {
                   {task.id === 'task_3' && openBreaksCount > 0 && (
                     <button
                       onClick={() => setActiveModule('reconciliation')}
-                      className="px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-300 border border-rose-500/30 hover:bg-rose-500/30 font-semibold text-xs cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-rose-500/20 text-rose-700 border border-rose-500/30 hover:bg-rose-500/30 font-semibold text-xs cursor-pointer"
                     >
                       Fix {openBreaksCount} Breaks
                     </button>
@@ -175,7 +175,7 @@ export const MonthEndClose: React.FC = () => {
                   {task.id === 'task_4' && pendingJournalsCount > 0 && (
                     <button
                       onClick={() => setActiveModule('subledger')}
-                      className="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-300 border border-purple-500/30 hover:bg-purple-500/30 font-semibold text-xs cursor-pointer"
+                      className="px-2.5 py-1 rounded-md bg-purple-500/20 text-purple-700 border border-purple-500/30 hover:bg-purple-500/30 font-semibold text-xs cursor-pointer"
                     >
                       Approve Journals
                     </button>
@@ -190,24 +190,24 @@ export const MonthEndClose: React.FC = () => {
       {/* Period Lock Modal */}
       {lockModalOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-[#111114] rounded-xl shadow-2xl border border-[#222226] w-full max-w-md p-6 animate-in zoom-in-95 text-white">
-            <div className="flex items-center gap-2 text-rose-400 font-bold mb-2">
+          <div className="bg-[#ffffff] rounded-xl shadow-2xl border border-[#e2e8f0] w-full max-w-md p-6 animate-in zoom-in-95 text-slate-900">
+            <div className="flex items-center gap-2 text-rose-600 font-bold mb-2">
               <Lock className="w-5 h-5" />
               <span>Lock & Freeze August 2026 Period</span>
             </div>
-            <p className="text-xs text-slate-400 leading-relaxed mb-4">
+            <p className="text-xs text-slate-600 leading-relaxed mb-4">
               Freezing the accounting period permanently prevents modifications to transactions, subledger journal lines, or cost basis lots without formal auditor unlock authorization.
             </p>
 
-            <div className="p-3 bg-[#16161c] rounded-lg border border-[#222226] text-xs mb-4 text-slate-300">
-              <div>Period: <strong className="text-white">August 2026 (2026-08)</strong></div>
-              <div>Authorized Signer: <strong className="text-white">{currentUser.name} ({currentUser.title})</strong></div>
+            <div className="p-3 bg-[#f8fafc] rounded-lg border border-[#e2e8f0] text-xs mb-4 text-slate-700">
+              <div>Period: <strong className="text-slate-900">August 2026 (2026-08)</strong></div>
+              <div>Authorized Signer: <strong className="text-slate-900">{currentUser.name} ({currentUser.title})</strong></div>
             </div>
 
             <div className="flex items-center justify-end gap-2">
               <button
                 onClick={() => setLockModalOpen(false)}
-                className="px-3 py-1.5 rounded-lg border border-[#2d2d35] text-xs font-medium text-slate-300 hover:bg-[#16161c] cursor-pointer"
+                className="px-3 py-1.5 rounded-lg border border-[#cbd5e1] text-xs font-medium text-slate-700 hover:bg-[#f8fafc] cursor-pointer"
               >
                 Cancel
               </button>

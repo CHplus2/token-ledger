@@ -42,9 +42,9 @@ export const AssetRegister: React.FC = () => {
           <button
             onClick={handleRefreshPrices}
             disabled={refreshing}
-            className="px-3.5 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] hover:bg-[#1c1c21] text-slate-300 text-xs font-bold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
+            className="px-3.5 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] hover:bg-[#f1f5f9] text-slate-700 text-xs font-bold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50"
           >
-            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-purple-400' : ''}`} />
+            <RefreshCw className={`w-3.5 h-3.5 ${refreshing ? 'animate-spin text-purple-600' : ''}`} />
             <span>{refreshing ? 'Refreshing Feeds...' : 'Refresh Market Prices'}</span>
           </button>
         }
@@ -81,20 +81,21 @@ export const AssetRegister: React.FC = () => {
       </div>
 
       {/* Asset Valuation Table */}
-      <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-        <div className="p-4 bg-[#16161c] border-b border-[#222226] flex items-center justify-between text-xs">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+        <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs">
           <div>
-            <span className="font-bold text-white">Held Digital Asset Inventory</span>
-            <span className="text-slate-400 ml-2">5 Active Assets Under Custody</span>
+            <span className="font-bold text-slate-900">Held Digital Asset Inventory</span>
+            <span className="text-slate-600 ml-2">5 Active Assets Under Custody</span>
           </div>
-          <span className="text-[11px] text-slate-400">Benchmark Index: <strong className="text-slate-200">Pyth & Coinbase Composite</strong></span>
+          <span className="text-[11px] text-slate-600">Benchmark Index: <strong className="text-slate-800">Pyth & Coinbase Composite</strong></span>
         </div>
 
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+              <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                 <th className="py-3 px-4">Asset</th>
+                <th className="py-3 px-4">Custody Wallet & Custodian</th>
                 <th className="py-3 px-4 text-right font-mono">Holding Quantity</th>
                 <th className="py-3 px-4 text-right font-mono">Spot Unit Price (USD)</th>
                 <th className="py-3 px-4 text-right font-mono">Total Market Value</th>
@@ -104,7 +105,7 @@ export const AssetRegister: React.FC = () => {
                 <th className="py-3 px-4 text-right">Price Feed Source</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1e1e24]">
+            <tbody className="divide-y divide-[#e2e8f0]">
               {assetValuations.map((a, idx) => {
                 const isSolana = a.assetSymbol === 'SOL';
                 const rowKey = a.id || a.assetSymbol || `asset_${idx}`;
@@ -114,7 +115,7 @@ export const AssetRegister: React.FC = () => {
                 return (
                   <tr
                     key={rowKey}
-                    className={`hover:bg-[#16161c]/60 transition-colors ${
+                    className={`hover:bg-[#f8fafc]/60 transition-colors ${
                       isSolana ? 'bg-emerald-500/5' : ''
                     }`}
                   >
@@ -123,53 +124,69 @@ export const AssetRegister: React.FC = () => {
                         <div
                           className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs ${
                             isSolana
-                              ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30'
-                              : 'bg-[#1c1c21] text-white border border-[#2d2d35]'
+                              ? 'bg-emerald-500/20 text-emerald-700 border border-emerald-500/30'
+                              : 'bg-[#f1f5f9] text-slate-700 border border-[#cbd5e1]'
                           }`}
                         >
                           {a.assetSymbol}
                         </div>
                         <div>
                           <div className="flex items-center gap-1.5">
-                            <span className="font-bold text-white">{a.name}</span>
+                            <span className="font-bold text-slate-900">{a.name}</span>
                             {isSolana && (
-                              <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                              <span className="px-1.5 py-0.2 rounded text-[9px] font-bold bg-emerald-500/20 text-emerald-700 border border-emerald-500/30">
                                 #1 TOP
                               </span>
                             )}
                           </div>
-                          <span className="text-[11px] text-purple-300 font-mono">{a.assetSymbol}</span>
+                          <span className="text-[11px] text-purple-700 font-mono">{a.assetSymbol}</span>
                         </div>
                       </div>
                     </td>
 
-                    <td className="py-3.5 px-4 text-right font-mono font-bold text-white">
+                    <td className="py-3.5 px-4">
+                      {a.walletName ? (
+                        <div>
+                          <div className="font-semibold text-slate-800">{a.walletName}</div>
+                          <div className="text-[11px] text-slate-600">
+                            Custodian: <span className="text-purple-700 font-medium">{a.custodian}</span>
+                          </div>
+                          <div className="text-[10px] text-slate-600 font-mono mt-0.5">
+                            {a.chains?.join(' • ')}
+                          </div>
+                        </div>
+                      ) : (
+                        <span className="text-slate-600">{a.network}</span>
+                      )}
+                    </td>
+
+                    <td className="py-3.5 px-4 text-right font-mono font-bold text-slate-900">
                       {quantity.toLocaleString()} {a.assetSymbol}
                     </td>
 
-                    <td className="py-3.5 px-4 text-right font-mono text-slate-200">
+                    <td className="py-3.5 px-4 text-right font-mono text-slate-800">
                       ${spotPrice.toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </td>
 
-                    <td className="py-3.5 px-4 text-right font-mono font-bold text-white">
+                    <td className="py-3.5 px-4 text-right font-mono font-bold text-slate-900">
                       ${(a.marketValueUsd ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </td>
 
-                    <td className="py-3.5 px-4 text-right font-mono text-slate-400">
+                    <td className="py-3.5 px-4 text-right font-mono text-slate-600">
                       ${(a.costBasisUsd ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </td>
 
-                    <td className="py-3.5 px-4 text-right font-mono font-bold text-emerald-400">
+                    <td className="py-3.5 px-4 text-right font-mono font-bold text-emerald-600">
                       {(a.unrealizedGainLossUsd ?? 0) > 0 ? `+$${(a.unrealizedGainLossUsd ?? 0).toLocaleString()}` : '$0.00'}
                     </td>
 
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#1c1c21] text-slate-300 border border-[#2d2d35]">
+                      <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#f1f5f9] text-slate-700 border border-[#cbd5e1]">
                         {a.valuationLevel || 'Level 1 Quoted'}
                       </span>
                     </td>
 
-                    <td className="py-3.5 px-4 text-right text-slate-400 font-medium">
+                    <td className="py-3.5 px-4 text-right text-slate-600 font-medium">
                       {a.priceSource}
                     </td>
                   </tr>
