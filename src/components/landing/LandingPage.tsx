@@ -228,9 +228,6 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.1] text-white">
             Your <span style={{ color: GOLD }}>CFO</span> for the tokenized finance world
           </h1>
-          <p className="mt-6 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed" style={{ color: '#c3cbe0' }}>
-            Institutional-grade financial data &amp; accounting for digital assets.
-          </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={onLaunch}
@@ -376,12 +373,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           }}
         >
           <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: GOLD }} />
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Built for TradFi and Web3 startups</h2>
-          <p className="text-sm max-w-xl mx-auto mb-7" style={{ color: '#a9b4d1' }}>
-            The demo ships with a full month of seeded sample activity for Meridian Capital Group — transactions,
-            reconciliation breaks, journal entries, and a multi-chain custody portfolio — so every screen shows real
-            numbers, not placeholders.
-          </p>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-7">Built for TradFi and Web3 startups</h2>
           <form
             onSubmit={(e) => {
               e.preventDefault();
