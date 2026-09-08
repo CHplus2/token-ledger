@@ -39,27 +39,27 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
   const selectedEntity = entities.find((e) => e.id === selectedEntityId) || entities[0];
 
   return (
-    <header className="h-16 bg-[#ffffff] border-b border-[#e2e8f0] border-t-[3px] border-t-[#C9A227] px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+    <header className="min-h-16 bg-[#ffffff] border-b border-[#e2e8f0] border-t-[3px] border-t-[#C9A227] px-6 flex items-center justify-between gap-3 sticky top-0 z-30 shadow-xs">
       {/* Left: Organization & Entity Switcher */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-4 min-w-0">
         <button
           type="button"
           onClick={onLogoClick}
           title="Back to Token Ledger overview"
-          className="flex items-center gap-2.5 cursor-pointer text-left"
+          className="flex items-center gap-2.5 cursor-pointer text-left min-w-0 shrink-0"
         >
-          <Logo size={32} className="shadow-xs" />
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
+          <Logo size={32} className="shadow-xs shrink-0" />
+          <div className="min-w-0 hidden sm:block">
+            <div className="text-xs font-semibold uppercase tracking-wider text-slate-600 whitespace-nowrap">
               Institutional Subledger
             </div>
-            <div className="text-sm font-bold text-slate-900 leading-tight">
+            <div className="text-sm font-bold text-slate-900 leading-tight whitespace-nowrap truncate max-w-[220px]">
               {organization.name}
             </div>
           </div>
         </button>
 
-        <div className="h-6 w-px bg-[#e2e8f0]" />
+        <div className="h-6 w-px bg-[#e2e8f0] shrink-0 hidden sm:block" />
 
         {/* Legal Entity Selector */}
         <div className="relative group">
@@ -84,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
         </div>
 
         {/* Data Health & Controls Indicator */}
-        <div className="hidden xl:flex items-center gap-2 pl-2">
+        <div className="hidden 2xl:flex items-center gap-2 pl-2 shrink-0">
           <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 text-xs font-medium">
             <Activity className="w-3.5 h-3.5 text-emerald-600" />
             <span>Data Health: 96%</span>
@@ -97,16 +97,16 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
       </div>
 
       {/* Right: Search, Demo, Role Switcher & Ledger AI */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 shrink-0">
         {/* Quick Search Trigger */}
         <button
           id="btn-quick-search"
           onClick={() => setIsCommandPaletteOpen(true)}
-          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] hover:bg-[#f1f5f9] text-xs text-slate-600 transition-colors shadow-2xs"
+          className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-[#e2e8f0] bg-[#f8fafc] hover:bg-[#f1f5f9] text-xs text-slate-600 transition-colors shadow-2xs shrink-0"
         >
-          <Search className="w-3.5 h-3.5 text-slate-600" />
-          <span className="hidden sm:inline">Search records, assets, hashes...</span>
-          <kbd className="hidden md:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-[#f1f5f9] border border-[#cbd5e1] rounded text-slate-600">
+          <Search className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+          <span className="hidden 2xl:inline whitespace-nowrap">Search records, assets, hashes...</span>
+          <kbd className="hidden lg:inline-block px-1.5 py-0.5 text-[10px] font-mono bg-[#f1f5f9] border border-[#cbd5e1] rounded text-slate-600">
             ⌘K
           </kbd>
         </button>
