@@ -10,7 +10,7 @@ interface ManageEntitiesProps {
 }
 
 const inputClass =
-  'w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] text-white placeholder:text-slate-500 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none';
+  'w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] text-slate-900 placeholder:text-slate-600 text-xs focus:ring-2 focus:ring-purple-500 focus:outline-none';
 
 export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
   const [tab, setTab] = useState<ManageTab>('ASSETS');
@@ -50,12 +50,12 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
 
   return (
     <div className="space-y-4">
-      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-[11px] text-amber-200 leading-relaxed">
+      <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-[11px] text-amber-700 leading-relaxed">
         This is basic CRUD for MVP demo purposes — it edits real rows in Postgres directly, with no validation beyond
         required fields and no approval workflow.
       </div>
 
-      <div className="flex items-center gap-2 border-b border-[#222226] pb-2">
+      <div className="flex items-center gap-2 border-b border-[#e2e8f0] pb-2">
         {[
           { id: 'ASSETS' as ManageTab, label: 'Assets', icon: Coins },
           { id: 'WALLETS' as ManageTab, label: 'Wallets', icon: WalletIcon },
@@ -69,7 +69,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
               setFormError(null);
             }}
             className={`px-3.5 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer flex items-center gap-1.5 ${
-              tab === t.id ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xs' : 'text-slate-400 hover:bg-[#16161c] hover:text-white'
+              tab === t.id ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xs' : 'text-slate-600 hover:bg-[#f8fafc] hover:text-slate-900'
             }`}
           >
             <t.icon className="w-3.5 h-3.5" />
@@ -79,7 +79,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
       </div>
 
       {formError && (
-        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-300">{formError}</div>
+        <div className="rounded-lg border border-rose-500/30 bg-rose-500/10 p-3 text-xs text-rose-700">{formError}</div>
       )}
 
       {tab === 'ASSETS' && (
@@ -147,10 +147,10 @@ const AssetsPanel: React.FC<{
 
   return (
     <div className="space-y-4">
-      <div className="bg-[#111114] rounded-xl border border-[#222226] overflow-hidden">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] overflow-hidden">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+            <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
               <th className="py-2.5 px-3">Symbol</th>
               <th className="py-2.5 px-3">Name</th>
               <th className="py-2.5 px-3">Type</th>
@@ -159,18 +159,18 @@ const AssetsPanel: React.FC<{
               <th className="py-2.5 px-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#1e1e24]">
+          <tbody className="divide-y divide-[#e2e8f0]">
             {assets.map((a) => (
-              <tr key={a.id} className="hover:bg-[#16161c]/60">
-                <td className="py-2.5 px-3 font-bold text-white">{a.symbol}</td>
-                <td className="py-2.5 px-3 text-slate-300">{a.name}</td>
-                <td className="py-2.5 px-3 text-slate-400">{ASSET_TYPE_LABELS[a.assetType] || a.assetType}</td>
-                <td className="py-2.5 px-3 text-slate-300">{a.issuer?.name}</td>
-                <td className="py-2.5 px-3 text-right font-mono text-slate-400">{a.holdingCount ?? 0}</td>
+              <tr key={a.id} className="hover:bg-[#f8fafc]/60">
+                <td className="py-2.5 px-3 font-bold text-slate-900">{a.symbol}</td>
+                <td className="py-2.5 px-3 text-slate-700">{a.name}</td>
+                <td className="py-2.5 px-3 text-slate-600">{ASSET_TYPE_LABELS[a.assetType] || a.assetType}</td>
+                <td className="py-2.5 px-3 text-slate-700">{a.issuer?.name}</td>
+                <td className="py-2.5 px-3 text-right font-mono text-slate-600">{a.holdingCount ?? 0}</td>
                 <td className="py-2.5 px-3 text-right">
                   <button
                     onClick={() => onDelete(a.id)}
-                    className="p-1.5 rounded-md text-rose-400 hover:bg-rose-500/10 cursor-pointer"
+                    className="p-1.5 rounded-md text-rose-600 hover:bg-rose-500/10 cursor-pointer"
                     title="Delete asset"
                   >
                     <Trash2 className="w-3.5 h-3.5" />
@@ -182,17 +182,17 @@ const AssetsPanel: React.FC<{
         </table>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#111114] rounded-xl border border-[#222226] p-4 flex flex-wrap items-end gap-3">
+      <form onSubmit={handleSubmit} className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-4 flex flex-wrap items-end gap-3">
         <div className="flex-1 min-w-[160px]">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Name</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Name</label>
           <input className={inputClass} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. USD Coin" />
         </div>
         <div className="w-28">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Symbol</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Symbol</label>
           <input className={inputClass} value={symbol} onChange={(e) => setSymbol(e.target.value)} placeholder="USDC" />
         </div>
         <div className="w-48">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Type</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Type</label>
           <select className={inputClass} value={assetType} onChange={(e) => setAssetType(e.target.value as AssetType)}>
             {Object.entries(ASSET_TYPE_LABELS).map(([k, v]) => (
               <option key={k} value={k}>
@@ -202,7 +202,7 @@ const AssetsPanel: React.FC<{
           </select>
         </div>
         <div className="w-48">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Issuer</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Issuer</label>
           <select className={inputClass} value={issuerId} onChange={(e) => setIssuerId(e.target.value)}>
             {issuers.map((i) => (
               <option key={i.id} value={i.id}>
@@ -244,28 +244,28 @@ const WalletsPanel: React.FC<{
 
   return (
     <div className="space-y-4">
-      <div className="bg-[#111114] rounded-xl border border-[#222226] overflow-hidden">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] overflow-hidden">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+            <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
               <th className="py-2.5 px-3">Wallet</th>
               <th className="py-2.5 px-3">Chain</th>
               <th className="py-2.5 px-3">Address</th>
               <th className="py-2.5 px-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#1e1e24]">
+          <tbody className="divide-y divide-[#e2e8f0]">
             {wallets.map((w) => (
-              <tr key={w.id} className="hover:bg-[#16161c]/60">
-                <td className="py-2.5 px-3 font-semibold text-white">{w.name}</td>
+              <tr key={w.id} className="hover:bg-[#f8fafc]/60">
+                <td className="py-2.5 px-3 font-semibold text-slate-900">{w.name}</td>
                 <td className="py-2.5 px-3">
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-300 border border-purple-500/20">
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-purple-500/10 text-purple-700 border border-purple-500/20">
                     {w.chain?.name}
                   </span>
                 </td>
-                <td className="py-2.5 px-3 text-slate-500 font-mono">{w.address || '—'}</td>
+                <td className="py-2.5 px-3 text-slate-600 font-mono">{w.address || '—'}</td>
                 <td className="py-2.5 px-3 text-right">
-                  <button onClick={() => onDelete(w.id)} className="p-1.5 rounded-md text-rose-400 hover:bg-rose-500/10 cursor-pointer">
+                  <button onClick={() => onDelete(w.id)} className="p-1.5 rounded-md text-rose-600 hover:bg-rose-500/10 cursor-pointer">
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </td>
@@ -275,13 +275,13 @@ const WalletsPanel: React.FC<{
         </table>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#111114] rounded-xl border border-[#222226] p-4 flex flex-wrap items-end gap-3">
+      <form onSubmit={handleSubmit} className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-4 flex flex-wrap items-end gap-3">
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Wallet Name</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Wallet Name</label>
           <input className={inputClass} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Circle Wallet (Ethereum)" />
         </div>
         <div className="w-40">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Chain</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Chain</label>
           <select className={inputClass} value={chainId} onChange={(e) => setChainId(e.target.value)}>
             {chains.map((c) => (
               <option key={c.id} value={c.id}>
@@ -291,7 +291,7 @@ const WalletsPanel: React.FC<{
           </select>
         </div>
         <div className="flex-1 min-w-[180px]">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Address (optional)</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Address (optional)</label>
           <input className={inputClass} value={address} onChange={(e) => setAddress(e.target.value)} placeholder="0x... / base58..." />
         </div>
         <button
@@ -323,20 +323,20 @@ const CustodiansPanel: React.FC<{
 
   return (
     <div className="space-y-4">
-      <div className="bg-[#111114] rounded-xl border border-[#222226] overflow-hidden">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] overflow-hidden">
         <table className="w-full text-left text-xs">
           <thead>
-            <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+            <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
               <th className="py-2.5 px-3">Custodian</th>
               <th className="py-2.5 px-3 text-right">Actions</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#1e1e24]">
+          <tbody className="divide-y divide-[#e2e8f0]">
             {custodians.map((c) => (
-              <tr key={c.id} className="hover:bg-[#16161c]/60">
-                <td className="py-2.5 px-3 font-semibold text-white">{c.name}</td>
+              <tr key={c.id} className="hover:bg-[#f8fafc]/60">
+                <td className="py-2.5 px-3 font-semibold text-slate-900">{c.name}</td>
                 <td className="py-2.5 px-3 text-right">
-                  <button onClick={() => onDelete(c.id)} className="p-1.5 rounded-md text-rose-400 hover:bg-rose-500/10 cursor-pointer">
+                  <button onClick={() => onDelete(c.id)} className="p-1.5 rounded-md text-rose-600 hover:bg-rose-500/10 cursor-pointer">
                     <Trash2 className="w-3.5 h-3.5" />
                   </button>
                 </td>
@@ -346,9 +346,9 @@ const CustodiansPanel: React.FC<{
         </table>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#111114] rounded-xl border border-[#222226] p-4 flex flex-wrap items-end gap-3">
+      <form onSubmit={handleSubmit} className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-4 flex flex-wrap items-end gap-3">
         <div className="flex-1 min-w-[200px]">
-          <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Custodian Name</label>
+          <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Custodian Name</label>
           <input className={inputClass} value={name} onChange={(e) => setName(e.target.value)} placeholder="e.g. Gambit Custody" />
         </div>
         <button
@@ -413,11 +413,11 @@ const HoldingsPanel: React.FC<{
 
   return (
     <div className="space-y-4">
-      <div className="bg-[#111114] rounded-xl border border-[#222226] overflow-hidden">
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+              <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                 <th className="py-2.5 px-3">Asset</th>
                 <th className="py-2.5 px-3">Chain</th>
                 <th className="py-2.5 px-3">Wallet</th>
@@ -426,16 +426,16 @@ const HoldingsPanel: React.FC<{
                 <th className="py-2.5 px-3 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1e1e24]">
+            <tbody className="divide-y divide-[#e2e8f0]">
               {holdings.map((h) => (
-                <tr key={h.id} className="hover:bg-[#16161c]/60">
-                  <td className="py-2.5 px-3 font-bold text-white">{h.asset?.symbol}</td>
-                  <td className="py-2.5 px-3 text-slate-300">{h.chain?.name}</td>
-                  <td className="py-2.5 px-3 text-slate-300">{h.wallet?.name}</td>
-                  <td className="py-2.5 px-3 text-slate-300">{h.custodian?.name}</td>
-                  <td className="py-2.5 px-3 text-right font-mono text-white font-semibold">{formatUsd(h.marketValue)}</td>
+                <tr key={h.id} className="hover:bg-[#f8fafc]/60">
+                  <td className="py-2.5 px-3 font-bold text-slate-900">{h.asset?.symbol}</td>
+                  <td className="py-2.5 px-3 text-slate-700">{h.chain?.name}</td>
+                  <td className="py-2.5 px-3 text-slate-700">{h.wallet?.name}</td>
+                  <td className="py-2.5 px-3 text-slate-700">{h.custodian?.name}</td>
+                  <td className="py-2.5 px-3 text-right font-mono text-slate-900 font-semibold">{formatUsd(h.marketValue)}</td>
                   <td className="py-2.5 px-3 text-right">
-                    <button onClick={() => onDelete(h.id)} className="p-1.5 rounded-md text-rose-400 hover:bg-rose-500/10 cursor-pointer">
+                    <button onClick={() => onDelete(h.id)} className="p-1.5 rounded-md text-rose-600 hover:bg-rose-500/10 cursor-pointer">
                       <Trash2 className="w-3.5 h-3.5" />
                     </button>
                   </td>
@@ -446,10 +446,10 @@ const HoldingsPanel: React.FC<{
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="bg-[#111114] rounded-xl border border-[#222226] p-4 space-y-3">
+      <form onSubmit={handleSubmit} className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-4 space-y-3">
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Asset</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Asset</label>
             <select className={inputClass} value={assetId} onChange={(e) => setAssetId(e.target.value)}>
               {assets.map((a) => (
                 <option key={a.id} value={a.id}>
@@ -459,7 +459,7 @@ const HoldingsPanel: React.FC<{
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Chain</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Chain</label>
             <select className={inputClass} value={chainId} onChange={(e) => setChainId(e.target.value)}>
               {chains.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -469,7 +469,7 @@ const HoldingsPanel: React.FC<{
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Wallet</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Wallet</label>
             <select className={inputClass} value={walletId} onChange={(e) => setWalletId(e.target.value)}>
               {wallets.map((w) => (
                 <option key={w.id} value={w.id}>
@@ -479,7 +479,7 @@ const HoldingsPanel: React.FC<{
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Custodian</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Custodian</label>
             <select className={inputClass} value={custodianId} onChange={(e) => setCustodianId(e.target.value)}>
               {custodians.map((c) => (
                 <option key={c.id} value={c.id}>
@@ -489,7 +489,7 @@ const HoldingsPanel: React.FC<{
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Asset Manager</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Asset Manager</label>
             <select className={inputClass} value={assetManagerId} onChange={(e) => setAssetManagerId(e.target.value)}>
               {assetManagers.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -499,15 +499,15 @@ const HoldingsPanel: React.FC<{
             </select>
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">As-of Date</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">As-of Date</label>
             <input type="date" className={inputClass} value={asOfDate} onChange={(e) => setAsOfDate(e.target.value)} />
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Balance (units)</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Balance (units)</label>
             <input type="number" step="any" className={inputClass} value={balance} onChange={(e) => setBalance(e.target.value)} placeholder="0.00" />
           </div>
           <div>
-            <label className="block text-[10px] uppercase font-bold text-slate-400 mb-1">Market Value (USD)</label>
+            <label className="block text-[10px] uppercase font-bold text-slate-600 mb-1">Market Value (USD)</label>
             <input type="number" step="any" className={inputClass} value={marketValue} onChange={(e) => setMarketValue(e.target.value)} placeholder="0.00" />
           </div>
         </div>

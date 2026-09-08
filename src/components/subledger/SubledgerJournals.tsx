@@ -119,7 +119,7 @@ export const SubledgerJournals: React.FC = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={() => handleExportERP('NETSUITE')}
-              className="px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] hover:bg-[#1c1c21] text-slate-300 text-xs font-semibold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] hover:bg-[#f1f5f9] text-slate-700 text-xs font-semibold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Export NetSuite CSV</span>
@@ -127,7 +127,7 @@ export const SubledgerJournals: React.FC = () => {
 
             <button
               onClick={() => handleExportERP('SAP')}
-              className="px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] hover:bg-[#1c1c21] text-slate-300 text-xs font-semibold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] hover:bg-[#f1f5f9] text-slate-700 text-xs font-semibold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
             >
               <Download className="w-3.5 h-3.5" />
               <span>Export SAP IDoc</span>
@@ -146,24 +146,24 @@ export const SubledgerJournals: React.FC = () => {
 
       {/* ERP Export Notification */}
       {erpExportStatus && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs rounded-xl flex items-center justify-between animate-in fade-in">
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 text-xs rounded-xl flex items-center justify-between animate-in fade-in">
           <span>{erpExportStatus}</span>
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
         </div>
       )}
 
       {/* Maker-Checker Role Callout */}
-      <div className="rounded-xl bg-[#111114] border border-[#222226] text-white p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+      <div className="rounded-xl bg-[#ffffff] border border-[#e2e8f0] text-slate-900 p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
         <div className="flex items-center gap-2.5">
-          <UserCheck className="w-5 h-5 text-purple-400 shrink-0" />
+          <UserCheck className="w-5 h-5 text-purple-600 shrink-0" />
           <div>
-            <span className="font-bold text-white">Active Dual-Control Workflow: </span>
-            <span className="text-slate-400">
-              Current user: <strong className="text-white">{currentUser.name}</strong> ({currentUser.role}).{' '}
+            <span className="font-bold text-slate-900">Active Dual-Control Workflow: </span>
+            <span className="text-slate-600">
+              Current user: <strong className="text-slate-900">{currentUser.name}</strong> ({currentUser.role}).{' '}
               {isChecker ? (
-                <span className="text-emerald-400 font-semibold">Authorized to approve & post journals to GL.</span>
+                <span className="text-emerald-600 font-semibold">Authorized to approve & post journals to GL.</span>
               ) : (
-                <span className="text-amber-400 font-semibold">Maker mode (can prepare journals, controller must approve).</span>
+                <span className="text-amber-600 font-semibold">Maker mode (can prepare journals, controller must approve).</span>
               )}
             </span>
           </div>
@@ -178,37 +178,37 @@ export const SubledgerJournals: React.FC = () => {
           return (
             <div
               key={journal.id}
-              className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden transition-all"
+              className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden transition-all"
             >
               {/* Journal Card Header */}
               <div
                 onClick={() => toggleExpand(journal.id)}
-                className="p-4 bg-[#16161c] hover:bg-[#1c1c21] cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#222226]"
+                className="p-4 bg-[#f8fafc] hover:bg-[#f1f5f9] cursor-pointer flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-[#e2e8f0]"
               >
                 <div className="flex items-center gap-3">
-                  <button className="text-slate-400 hover:text-white">
+                  <button className="text-slate-600 hover:text-slate-900">
                     {isExpanded ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
                   </button>
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="font-mono font-bold text-purple-400 text-xs">
+                      <span className="font-mono font-bold text-purple-600 text-xs">
                         {journal.journalNumber}
                       </span>
-                      <span className="text-xs font-semibold text-white">
+                      <span className="text-xs font-semibold text-slate-900">
                         {journal.description}
                       </span>
-                      <span className="text-[10px] font-mono px-1.5 py-0.2 bg-[#1c1c21] border border-[#2d2d35] text-slate-300 rounded">
+                      <span className="text-[10px] font-mono px-1.5 py-0.2 bg-[#f1f5f9] border border-[#cbd5e1] text-slate-700 rounded">
                         {journal.period}
                       </span>
                     </div>
-                    <div className="text-[11px] text-slate-400 flex items-center gap-2 mt-0.5">
+                    <div className="text-[11px] text-slate-600 flex items-center gap-2 mt-0.5">
                       <span>{journal.entityName}</span>
                       <span>•</span>
                       <span>Prepared by {journal.createdByName} on {journal.postingDate}</span>
                       {journal.approvedByName && (
                         <>
                           <span>•</span>
-                          <span className="text-emerald-400 font-medium">Approved by {journal.approvedByName}</span>
+                          <span className="text-emerald-600 font-medium">Approved by {journal.approvedByName}</span>
                         </>
                       )}
                     </div>
@@ -217,8 +217,8 @@ export const SubledgerJournals: React.FC = () => {
 
                 <div className="flex items-center gap-4 shrink-0">
                   <div className="text-right">
-                    <span className="block text-[10px] uppercase font-bold text-slate-400">Total Balanced Value</span>
-                    <span className="font-mono font-bold text-white text-sm">
+                    <span className="block text-[10px] uppercase font-bold text-slate-600">Total Balanced Value</span>
+                    <span className="font-mono font-bold text-slate-900 text-sm">
                       ${(journal.totalDebit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                     </span>
                   </div>
@@ -259,7 +259,7 @@ export const SubledgerJournals: React.FC = () => {
                 <div className="overflow-x-auto">
                   <table className="w-full text-left text-xs">
                     <thead>
-                      <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+                      <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                         <th className="py-2.5 px-4 w-28">GL Account</th>
                         <th className="py-2.5 px-4">Account Description</th>
                         <th className="py-2.5 px-4">Line Memo & Reference</th>
@@ -268,39 +268,39 @@ export const SubledgerJournals: React.FC = () => {
                         <th className="py-2.5 px-4 text-right font-mono">Credit (USD)</th>
                       </tr>
                     </thead>
-                    <tbody className="divide-y divide-[#1e1e24] bg-[#111114]">
+                    <tbody className="divide-y divide-[#e2e8f0] bg-[#ffffff]">
                       {journal.lines.map((line) => (
-                        <tr key={line.id} className="hover:bg-[#16161c]/60">
-                          <td className="py-2.5 px-4 font-mono font-bold text-purple-300">
+                        <tr key={line.id} className="hover:bg-[#f8fafc]/60">
+                          <td className="py-2.5 px-4 font-mono font-bold text-purple-700">
                             {line.accountCode}
                           </td>
-                          <td className="py-2.5 px-4 font-medium text-white">
+                          <td className="py-2.5 px-4 font-medium text-slate-900">
                             {line.accountName}
                           </td>
-                          <td className="py-2.5 px-4 text-slate-400">
+                          <td className="py-2.5 px-4 text-slate-600">
                             {line.description}
                           </td>
-                          <td className="py-2.5 px-4 text-right font-mono text-slate-300">
+                          <td className="py-2.5 px-4 text-right font-mono text-slate-700">
                             {line.assetQuantity ? `${line.assetQuantity} ${line.assetSymbol || ''}` : '—'}
                           </td>
-                          <td className="py-2.5 px-4 text-right font-mono font-bold text-white">
+                          <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900">
                             {line.debit > 0 ? `$${(line.debit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}` : '—'}
                           </td>
-                          <td className="py-2.5 px-4 text-right font-mono font-bold text-white">
+                          <td className="py-2.5 px-4 text-right font-mono font-bold text-slate-900">
                             {line.credit > 0 ? `$${(line.credit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}` : '—'}
                           </td>
                         </tr>
                       ))}
 
                       {/* Totals Row */}
-                      <tr className="bg-[#16161c] font-bold border-t border-[#222226] text-white">
-                        <td colSpan={4} className="py-2.5 px-4 text-right uppercase tracking-wider text-[10px] text-slate-400">
+                      <tr className="bg-[#f8fafc] font-bold border-t border-[#e2e8f0] text-slate-900">
+                        <td colSpan={4} className="py-2.5 px-4 text-right uppercase tracking-wider text-[10px] text-slate-600">
                           Total Balanced Journal
                         </td>
-                        <td className="py-2.5 px-4 text-right font-mono text-emerald-400">
+                        <td className="py-2.5 px-4 text-right font-mono text-emerald-600">
                           ${(journal.totalDebit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                         </td>
-                        <td className="py-2.5 px-4 text-right font-mono text-emerald-400">
+                        <td className="py-2.5 px-4 text-right font-mono text-emerald-600">
                           ${(journal.totalCredit ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2 })}
                         </td>
                       </tr>
@@ -316,15 +316,15 @@ export const SubledgerJournals: React.FC = () => {
       {/* Manual Create Journal Modal */}
       {isCreateModalOpen && (
         <div className="fixed inset-0 bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center p-4">
-          <div className="bg-[#111114] rounded-xl shadow-2xl border border-[#222226] w-full max-w-2xl overflow-hidden animate-in zoom-in-95 text-white">
-            <div className="px-6 py-4 bg-[#16161c] border-b border-[#222226] text-white flex items-center justify-between">
+          <div className="bg-[#ffffff] rounded-xl shadow-2xl border border-[#e2e8f0] w-full max-w-2xl overflow-hidden animate-in zoom-in-95 text-slate-900">
+            <div className="px-6 py-4 bg-[#f8fafc] border-b border-[#e2e8f0] text-slate-900 flex items-center justify-between">
               <div>
                 <h3 className="font-bold text-base">Create Manual Adjusting Journal Entry</h3>
-                <p className="text-xs text-slate-400">August 2026 Accounting Period</p>
+                <p className="text-xs text-slate-600">August 2026 Accounting Period</p>
               </div>
               <button
                 onClick={() => setIsCreateModalOpen(false)}
-                className="text-slate-400 hover:text-white cursor-pointer"
+                className="text-slate-600 hover:text-slate-900 cursor-pointer"
               >
                 ✕
               </button>
@@ -333,11 +333,11 @@ export const SubledgerJournals: React.FC = () => {
             <div className="p-6 space-y-4 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Legal Entity</label>
+                  <label className="block font-semibold text-slate-700 mb-1">Legal Entity</label>
                   <select
                     value={entityId}
                     onChange={(e) => setEntityId(e.target.value)}
-                    className="w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] font-medium text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-medium text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                   >
                     {entities.map((e) => (
                       <option key={e.id} value={e.id}>
@@ -348,38 +348,38 @@ export const SubledgerJournals: React.FC = () => {
                 </div>
 
                 <div>
-                  <label className="block font-semibold text-slate-300 mb-1">Posting Date</label>
+                  <label className="block font-semibold text-slate-700 mb-1">Posting Date</label>
                   <input
                     type="date"
                     defaultValue="2026-08-31"
-                    className="w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] font-medium text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-medium text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block font-semibold text-slate-300 mb-1">Journal Description / Memo</label>
+                <label className="block font-semibold text-slate-700 mb-1">Journal Description / Memo</label>
                 <input
                   type="text"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
                   placeholder="e.g. Month-End Fair Value Mark-to-Market reclassification"
-                  className="w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] font-medium text-white placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-medium text-slate-900 placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                 />
               </div>
 
               {/* Journal Lines Table */}
               <div>
                 <div className="flex items-center justify-between mb-2">
-                  <label className="font-bold uppercase tracking-wider text-slate-400">Journal Lines (Debit / Credit)</label>
-                  <span className={`font-mono font-bold ${isBalanced ? 'text-emerald-400' : 'text-rose-400'}`}>
+                  <label className="font-bold uppercase tracking-wider text-slate-600">Journal Lines (Debit / Credit)</label>
+                  <span className={`font-mono font-bold ${isBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
                     {isBalanced ? '✓ Debits Equal Credits' : `Difference: $${Math.abs(totalDebitSum - totalCreditSum).toFixed(2)}`}
                   </span>
                 </div>
 
                 <div className="space-y-2">
                   {lines.map((l, idx) => (
-                    <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-[#16161c] p-2.5 rounded-lg border border-[#222226]">
+                    <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-[#f8fafc] p-2.5 rounded-lg border border-[#e2e8f0]">
                       <div className="col-span-5">
                         <select
                           value={l.accountCode}
@@ -390,7 +390,7 @@ export const SubledgerJournals: React.FC = () => {
                             newLines[idx].accountName = acc?.name || '';
                             setLines(newLines);
                           }}
-                          className="w-full px-2 py-1.5 rounded border border-[#2d2d35] text-xs bg-[#111114] text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                          className="w-full px-2 py-1.5 rounded border border-[#cbd5e1] text-xs bg-[#ffffff] text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                         >
                           {chartOfAccounts.map((a) => (
                             <option key={a.id} value={a.code}>
@@ -410,7 +410,7 @@ export const SubledgerJournals: React.FC = () => {
                             newLines[idx].debit = Number(e.target.value);
                             setLines(newLines);
                           }}
-                          className="w-full px-2 py-1.5 rounded border border-[#2d2d35] text-xs font-mono bg-[#111114] text-white placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                          className="w-full px-2 py-1.5 rounded border border-[#cbd5e1] text-xs font-mono bg-[#ffffff] text-slate-900 placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                         />
                       </div>
 
@@ -424,7 +424,7 @@ export const SubledgerJournals: React.FC = () => {
                             newLines[idx].credit = Number(e.target.value);
                             setLines(newLines);
                           }}
-                          className="w-full px-2 py-1.5 rounded border border-[#2d2d35] text-xs font-mono bg-[#111114] text-white placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                          className="w-full px-2 py-1.5 rounded border border-[#cbd5e1] text-xs font-mono bg-[#ffffff] text-slate-900 placeholder-slate-500 focus:ring-2 focus:ring-purple-500 focus:outline-none"
                         />
                       </div>
 
@@ -432,7 +432,7 @@ export const SubledgerJournals: React.FC = () => {
                         {lines.length > 2 && (
                           <button
                             onClick={() => setLines(lines.filter((_, i) => i !== idx))}
-                            className="text-rose-400 hover:text-rose-300 cursor-pointer"
+                            className="text-rose-600 hover:text-rose-700 cursor-pointer"
                           >
                             ✕
                           </button>
@@ -444,7 +444,7 @@ export const SubledgerJournals: React.FC = () => {
               </div>
             </div>
 
-            <div className="px-6 py-4 bg-[#16161c] border-t border-[#222226] flex items-center justify-between">
+            <div className="px-6 py-4 bg-[#f8fafc] border-t border-[#e2e8f0] flex items-center justify-between">
               <button
                 onClick={() =>
                   setLines([
@@ -452,7 +452,7 @@ export const SubledgerJournals: React.FC = () => {
                     { accountCode: '1010', accountName: 'Operating Cash - USD', debit: 0, credit: 0 },
                   ])
                 }
-                className="text-xs font-semibold text-purple-400 hover:text-purple-300 cursor-pointer"
+                className="text-xs font-semibold text-purple-600 hover:text-purple-700 cursor-pointer"
               >
                 + Add Line
               </button>
@@ -460,7 +460,7 @@ export const SubledgerJournals: React.FC = () => {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => setIsCreateModalOpen(false)}
-                  className="px-3 py-2 rounded-lg border border-[#2d2d35] hover:bg-[#1c1c21] text-xs font-medium text-slate-300 cursor-pointer"
+                  className="px-3 py-2 rounded-lg border border-[#cbd5e1] hover:bg-[#f1f5f9] text-xs font-medium text-slate-700 cursor-pointer"
                 >
                   Cancel
                 </button>

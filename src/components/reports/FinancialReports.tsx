@@ -73,7 +73,7 @@ export const FinancialReports: React.FC = () => {
         actions={
           <button
             onClick={() => window.print()}
-            className="px-3.5 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] hover:bg-[#1c1c21] text-slate-300 text-xs font-bold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
+            className="px-3.5 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] hover:bg-[#f1f5f9] text-slate-700 text-xs font-bold shadow-2xs transition-colors flex items-center gap-1.5 cursor-pointer"
           >
             <Download className="w-4 h-4" />
             <span>Print Financial Package (PDF)</span>
@@ -82,7 +82,7 @@ export const FinancialReports: React.FC = () => {
       />
 
       {/* Report Selection Tabs */}
-      <div className="flex items-center gap-2 border-b border-[#222226] pb-2">
+      <div className="flex items-center gap-2 border-b border-[#e2e8f0] pb-2">
         {[
           { id: 'TRIAL_BALANCE' as ReportType, label: 'Trial Balance' },
           { id: 'BALANCE_SHEET' as ReportType, label: 'Balance Sheet' },
@@ -95,7 +95,7 @@ export const FinancialReports: React.FC = () => {
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
               activeReport === tab.id
                 ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xs'
-                : 'text-slate-400 hover:bg-[#16161c] hover:text-white'
+                : 'text-slate-600 hover:bg-[#f8fafc] hover:text-slate-900'
             }`}
           >
             {tab.label}
@@ -105,13 +105,13 @@ export const FinancialReports: React.FC = () => {
 
       {/* REPORT 1: TRIAL BALANCE */}
       {activeReport === 'TRIAL_BALANCE' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-          <div className="p-4 bg-[#16161c] border-b border-[#222226] flex items-center justify-between text-xs">
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+          <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between text-xs">
             <div>
-              <span className="font-bold text-white">General Ledger Trial Balance</span>
-              <span className="text-slate-400 ml-2">Period ending {closeDate}</span>
+              <span className="font-bold text-slate-900">General Ledger Trial Balance</span>
+              <span className="text-slate-600 ml-2">Period ending {closeDate}</span>
             </div>
-            <div className={`flex items-center gap-1.5 font-bold ${trialBalanced ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <div className={`flex items-center gap-1.5 font-bold ${trialBalanced ? 'text-emerald-600' : 'text-rose-600'}`}>
               {trialBalanced ? <CheckCircle2 className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
               <span>{trialBalanced ? 'Debits Equal Credits (Balanced)' : 'Out of Balance — review Chart of Accounts'}</span>
             </div>
@@ -120,32 +120,32 @@ export const FinancialReports: React.FC = () => {
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+                <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                   <th className="py-3 px-4">Account Code</th>
                   <th className="py-3 px-4">Account Name</th>
                   <th className="py-3 px-4 text-right font-mono">Debit ({currency})</th>
                   <th className="py-3 px-4 text-right font-mono">Credit ({currency})</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#1e1e24]">
+              <tbody className="divide-y divide-[#e2e8f0]">
                 {accounts.map((row) => (
-                  <tr key={row.code} className="hover:bg-[#16161c]/60">
-                    <td className="py-2.5 px-4 font-mono font-bold text-purple-300">{row.code}</td>
-                    <td className="py-2.5 px-4 font-medium text-white">{row.name}</td>
-                    <td className="py-2.5 px-4 text-right font-mono text-white">
+                  <tr key={row.code} className="hover:bg-[#f8fafc]/60">
+                    <td className="py-2.5 px-4 font-mono font-bold text-purple-700">{row.code}</td>
+                    <td className="py-2.5 px-4 font-medium text-slate-900">{row.name}</td>
+                    <td className="py-2.5 px-4 text-right font-mono text-slate-900">
                       {debitOf(row) > 0 ? usd(debitOf(row)) : '—'}
                     </td>
-                    <td className="py-2.5 px-4 text-right font-mono text-white">
+                    <td className="py-2.5 px-4 text-right font-mono text-slate-900">
                       {creditOf(row) > 0 ? usd(creditOf(row)) : '—'}
                     </td>
                   </tr>
                 ))}
-                <tr className="bg-[#16161c] font-bold border-t-2 border-[#2d2d35] text-white">
-                  <td colSpan={2} className="py-3 px-4 uppercase text-[11px] tracking-wider text-slate-300">
+                <tr className="bg-[#f8fafc] font-bold border-t-2 border-[#cbd5e1] text-slate-900">
+                  <td colSpan={2} className="py-3 px-4 uppercase text-[11px] tracking-wider text-slate-700">
                     Total Trial Balance
                   </td>
-                  <td className="py-3 px-4 text-right font-mono text-sm text-emerald-400">{usd(totalDebits)}</td>
-                  <td className="py-3 px-4 text-right font-mono text-sm text-emerald-400">{usd(totalCredits)}</td>
+                  <td className="py-3 px-4 text-right font-mono text-sm text-emerald-600">{usd(totalDebits)}</td>
+                  <td className="py-3 px-4 text-right font-mono text-sm text-emerald-600">{usd(totalCredits)}</td>
                 </tr>
               </tbody>
             </table>
@@ -155,71 +155,71 @@ export const FinancialReports: React.FC = () => {
 
       {/* REPORT 2: BALANCE SHEET */}
       {activeReport === 'BALANCE_SHEET' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs p-6 max-w-3xl space-y-6 text-xs text-white">
-          <div className="border-b border-[#222226] pb-4">
-            <h3 className="font-bold text-base text-white">{organization.name}</h3>
-            <p className="text-purple-400 font-semibold">Statement of Financial Position (Balance Sheet)</p>
-            <p className="text-slate-400 text-[11px]">As of {closeDate} • Reporting Currency: {currency}</p>
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs p-6 max-w-3xl space-y-6 text-xs text-slate-900">
+          <div className="border-b border-[#e2e8f0] pb-4">
+            <h3 className="font-bold text-base text-slate-900">{organization.name}</h3>
+            <p className="text-purple-600 font-semibold">Statement of Financial Position (Balance Sheet)</p>
+            <p className="text-slate-600 text-[11px]">As of {closeDate} • Reporting Currency: {currency}</p>
           </div>
 
           <div className="space-y-2">
-            <div className="font-bold text-slate-300 uppercase tracking-wider text-[11px] border-b border-[#222226] pb-1">
+            <div className="font-bold text-slate-700 uppercase tracking-wider text-[11px] border-b border-[#e2e8f0] pb-1">
               Assets
             </div>
             {assets.map((a) => (
-              <div key={a.code} className="flex justify-between py-1 text-slate-300">
+              <div key={a.code} className="flex justify-between py-1 text-slate-700">
                 <span>
-                  <span className="font-mono text-purple-300 mr-2">{a.code}</span>
+                  <span className="font-mono text-purple-700 mr-2">{a.code}</span>
                   {a.name}
                 </span>
-                <span className="font-mono font-medium text-white">{usd(a.balance)}</span>
+                <span className="font-mono font-medium text-slate-900">{usd(a.balance)}</span>
               </div>
             ))}
-            <div className="flex justify-between py-2 border-t border-[#222226] font-bold text-white">
+            <div className="flex justify-between py-2 border-t border-[#e2e8f0] font-bold text-slate-900">
               <span>Total Assets</span>
-              <span className="font-mono text-emerald-400">{usd(totalAssets)}</span>
+              <span className="font-mono text-emerald-600">{usd(totalAssets)}</span>
             </div>
           </div>
 
           <div className="space-y-2">
-            <div className="font-bold text-slate-300 uppercase tracking-wider text-[11px] border-b border-[#222226] pb-1">
+            <div className="font-bold text-slate-700 uppercase tracking-wider text-[11px] border-b border-[#e2e8f0] pb-1">
               Liabilities
             </div>
             {liabilities.map((a) => (
-              <div key={a.code} className="flex justify-between py-1 text-slate-300">
+              <div key={a.code} className="flex justify-between py-1 text-slate-700">
                 <span>
-                  <span className="font-mono text-purple-300 mr-2">{a.code}</span>
+                  <span className="font-mono text-purple-700 mr-2">{a.code}</span>
                   {a.name}
                 </span>
-                <span className="font-mono font-medium text-white">{usd(a.balance)}</span>
+                <span className="font-mono font-medium text-slate-900">{usd(a.balance)}</span>
               </div>
             ))}
-            <div className="flex justify-between py-2 border-t border-[#222226] font-bold text-white">
+            <div className="flex justify-between py-2 border-t border-[#e2e8f0] font-bold text-slate-900">
               <span>Total Liabilities</span>
               <span className="font-mono">{usd(totalLiabilities)}</span>
             </div>
           </div>
 
           <div className="space-y-2">
-            <div className="font-bold text-slate-300 uppercase tracking-wider text-[11px] border-b border-[#222226] pb-1">
+            <div className="font-bold text-slate-700 uppercase tracking-wider text-[11px] border-b border-[#e2e8f0] pb-1">
               Equity
             </div>
             {equity.map((a) => (
-              <div key={a.code} className="flex justify-between py-1 text-slate-300">
+              <div key={a.code} className="flex justify-between py-1 text-slate-700">
                 <span>
-                  <span className="font-mono text-purple-300 mr-2">{a.code}</span>
+                  <span className="font-mono text-purple-700 mr-2">{a.code}</span>
                   {a.name}
                 </span>
-                <span className="font-mono font-medium text-white">{usd(a.balance)}</span>
+                <span className="font-mono font-medium text-slate-900">{usd(a.balance)}</span>
               </div>
             ))}
-            <div className="flex justify-between py-1 text-slate-300">
+            <div className="flex justify-between py-1 text-slate-700">
               <span>Current-Period Net Income (unclosed — see Profit &amp; Loss)</span>
-              <span className={`font-mono font-medium ${netIncome >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+              <span className={`font-mono font-medium ${netIncome >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                 {usd(netIncome)}
               </span>
             </div>
-            <div className="flex justify-between py-2 border-t border-[#222226] font-bold text-white">
+            <div className="flex justify-between py-2 border-t border-[#e2e8f0] font-bold text-slate-900">
               <span>Total Equity</span>
               <span className="font-mono">{usd(totalEquity + netIncome)}</span>
             </div>
@@ -228,8 +228,8 @@ export const FinancialReports: React.FC = () => {
           <div
             className={`flex items-center justify-between py-3 px-4 rounded-lg border font-bold text-sm ${
               balanceSheetBalanced
-                ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
-                : 'border-rose-500/30 bg-rose-500/10 text-rose-300'
+                ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-700'
+                : 'border-rose-500/30 bg-rose-500/10 text-rose-700'
             }`}
           >
             <span className="flex items-center gap-1.5">
@@ -245,54 +245,54 @@ export const FinancialReports: React.FC = () => {
 
       {/* REPORT 3: INCOME STATEMENT (P&L) */}
       {activeReport === 'INCOME_STATEMENT' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs p-6 max-w-3xl space-y-4 text-xs text-white">
-          <div className="border-b border-[#222226] pb-4">
-            <h3 className="font-bold text-base text-white">{organization.name}</h3>
-            <p className="text-purple-400 font-semibold">Statement of Profit & Loss</p>
-            <p className="text-slate-400 text-[11px]">For the period ended {closeDate} • Currency: {currency}</p>
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs p-6 max-w-3xl space-y-4 text-xs text-slate-900">
+          <div className="border-b border-[#e2e8f0] pb-4">
+            <h3 className="font-bold text-base text-slate-900">{organization.name}</h3>
+            <p className="text-purple-600 font-semibold">Statement of Profit & Loss</p>
+            <p className="text-slate-600 text-[11px]">For the period ended {closeDate} • Currency: {currency}</p>
           </div>
 
           <div className="space-y-2">
-            <div className="font-bold text-slate-300 uppercase tracking-wider text-[11px] border-b border-[#222226] pb-1">
+            <div className="font-bold text-slate-700 uppercase tracking-wider text-[11px] border-b border-[#e2e8f0] pb-1">
               Income
             </div>
             {income.map((a) => (
-              <div key={a.code} className="flex justify-between py-1.5 border-b border-[#1a1a20] text-slate-300">
+              <div key={a.code} className="flex justify-between py-1.5 border-b border-[#f8fafc] text-slate-700">
                 <span>
-                  <span className="font-mono text-purple-300 mr-2">{a.code}</span>
+                  <span className="font-mono text-purple-700 mr-2">{a.code}</span>
                   {a.name}
                 </span>
-                <span className="font-mono font-bold text-emerald-400">+{usd(a.balance)}</span>
+                <span className="font-mono font-bold text-emerald-600">+{usd(a.balance)}</span>
               </div>
             ))}
-            <div className="flex justify-between py-1.5 font-bold text-white">
+            <div className="flex justify-between py-1.5 font-bold text-slate-900">
               <span>Total Income</span>
-              <span className="font-mono text-emerald-400">+{usd(totalIncome)}</span>
+              <span className="font-mono text-emerald-600">+{usd(totalIncome)}</span>
             </div>
           </div>
 
           <div className="space-y-2">
-            <div className="font-bold text-slate-300 uppercase tracking-wider text-[11px] border-b border-[#222226] pb-1">
+            <div className="font-bold text-slate-700 uppercase tracking-wider text-[11px] border-b border-[#e2e8f0] pb-1">
               Expenses
             </div>
             {expenses.map((a) => (
-              <div key={a.code} className="flex justify-between py-1.5 border-b border-[#1a1a20] text-rose-400">
-                <span className="text-slate-300">
-                  <span className="font-mono text-purple-300 mr-2">{a.code}</span>
+              <div key={a.code} className="flex justify-between py-1.5 border-b border-[#f8fafc] text-rose-600">
+                <span className="text-slate-700">
+                  <span className="font-mono text-purple-700 mr-2">{a.code}</span>
                   {a.name}
                 </span>
                 <span className="font-mono">-{usd(a.balance)}</span>
               </div>
             ))}
-            <div className="flex justify-between py-1.5 font-bold text-white">
+            <div className="flex justify-between py-1.5 font-bold text-slate-900">
               <span>Total Expenses</span>
-              <span className="font-mono text-rose-400">-{usd(totalExpenses)}</span>
+              <span className="font-mono text-rose-600">-{usd(totalExpenses)}</span>
             </div>
           </div>
 
-          <div className="flex justify-between py-3 border-t-2 border-[#2d2d35] font-bold text-sm text-white">
+          <div className="flex justify-between py-3 border-t-2 border-[#cbd5e1] font-bold text-sm text-slate-900">
             <span>Net Income</span>
-            <span className={`font-mono ${netIncome >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <span className={`font-mono ${netIncome >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
               {netIncome >= 0 ? '+' : ''}
               {usd(netIncome)}
             </span>
@@ -302,16 +302,16 @@ export const FinancialReports: React.FC = () => {
 
       {/* REPORT 4: ROLL-FORWARD SCHEDULE */}
       {activeReport === 'ROLL_FORWARD' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-          <div className="p-4 bg-[#16161c] border-b border-[#222226] text-xs">
-            <span className="font-bold text-white">Digital Asset Tax-Lot & Fair Value Roll-Forward</span>
-            <span className="text-slate-400 ml-2">Closing quantity, cost basis, and fair value per asset</span>
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+          <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] text-xs">
+            <span className="font-bold text-slate-900">Digital Asset Tax-Lot & Fair Value Roll-Forward</span>
+            <span className="text-slate-600 ml-2">Closing quantity, cost basis, and fair value per asset</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+                <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                   <th className="py-3 px-4">Asset</th>
                   <th className="py-3 px-4 text-right font-mono">Closing Qty</th>
                   <th className="py-3 px-4 text-right font-mono">Cost Basis ($)</th>
@@ -319,17 +319,17 @@ export const FinancialReports: React.FC = () => {
                   <th className="py-3 px-4 text-right font-mono">Unrealized Gain / (Loss) ($)</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#1e1e24]">
+              <tbody className="divide-y divide-[#e2e8f0]">
                 {assetValuations.map((a) => (
-                  <tr key={a.id || a.assetSymbol} className="hover:bg-[#16161c]/60">
-                    <td className="py-3 px-4 font-bold text-white flex items-center gap-1.5">
+                  <tr key={a.id || a.assetSymbol} className="hover:bg-[#f8fafc]/60">
+                    <td className="py-3 px-4 font-bold text-slate-900 flex items-center gap-1.5">
                       <span>{a.name}</span>
-                      <span className="font-mono text-purple-300">({a.assetSymbol})</span>
+                      <span className="font-mono text-purple-700">({a.assetSymbol})</span>
                     </td>
-                    <td className="py-3 px-4 text-right font-mono font-bold text-white">{(a.quantity ?? 0).toLocaleString()}</td>
-                    <td className="py-3 px-4 text-right font-mono text-slate-300">{usd(a.costBasisUsd ?? 0)}</td>
-                    <td className="py-3 px-4 text-right font-mono font-bold text-white">{usd(a.marketValueUsd ?? 0)}</td>
-                    <td className={`py-3 px-4 text-right font-mono font-bold ${(a.unrealizedGainLossUsd ?? 0) >= 0 ? 'text-emerald-400' : 'text-rose-400'}`}>
+                    <td className="py-3 px-4 text-right font-mono font-bold text-slate-900">{(a.quantity ?? 0).toLocaleString()}</td>
+                    <td className="py-3 px-4 text-right font-mono text-slate-700">{usd(a.costBasisUsd ?? 0)}</td>
+                    <td className="py-3 px-4 text-right font-mono font-bold text-slate-900">{usd(a.marketValueUsd ?? 0)}</td>
+                    <td className={`py-3 px-4 text-right font-mono font-bold ${(a.unrealizedGainLossUsd ?? 0) >= 0 ? 'text-emerald-600' : 'text-rose-600'}`}>
                       {(a.unrealizedGainLossUsd ?? 0) >= 0 ? '+' : ''}
                       {usd(a.unrealizedGainLossUsd ?? 0)}
                     </td>

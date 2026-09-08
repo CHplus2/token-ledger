@@ -49,7 +49,7 @@ export const AccountingRules: React.FC = () => {
               }}
               className="px-3.5 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white text-xs font-bold shadow-xs transition-colors flex items-center gap-1.5 cursor-pointer"
             >
-              <Sparkles className="w-3.5 h-3.5 text-purple-200" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-700" />
               <span>Run Rules Engine</span>
             </button>
           </div>
@@ -57,14 +57,14 @@ export const AccountingRules: React.FC = () => {
       />
 
       {successMsg && (
-        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs rounded-xl flex items-center justify-between animate-in fade-in">
+        <div className="p-3 bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 text-xs rounded-xl flex items-center justify-between animate-in fade-in">
           <span>{successMsg}</span>
-          <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
         </div>
       )}
 
       {/* Tabs */}
-      <div className="flex items-center gap-2 border-b border-[#222226] pb-2">
+      <div className="flex items-center gap-2 border-b border-[#e2e8f0] pb-2">
         {[
           { id: 'RULES' as const, label: 'Deterministic Accounting Rules' },
           { id: 'COA' as const, label: 'Chart of Accounts (COA)' },
@@ -76,7 +76,7 @@ export const AccountingRules: React.FC = () => {
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
               activeTab === t.id
                 ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-xs'
-                : 'text-slate-400 hover:bg-[#16161c] hover:text-white'
+                : 'text-slate-600 hover:bg-[#f8fafc] hover:text-slate-900'
             }`}
           >
             {t.label}
@@ -87,38 +87,38 @@ export const AccountingRules: React.FC = () => {
       {/* TAB 1: RULES ENGINE */}
       {activeTab === 'RULES' && (
         <div className="space-y-4">
-          <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-            <div className="p-4 bg-[#16161c] border-b border-[#222226] flex items-center justify-between">
+          <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+            <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] flex items-center justify-between">
               <div>
-                <h3 className="text-sm font-bold text-white">Active Rule Hierarchy</h3>
-                <p className="text-xs text-slate-400">Evaluated deterministically in priority order upon transaction ingestion</p>
+                <h3 className="text-sm font-bold text-slate-900">Active Rule Hierarchy</h3>
+                <p className="text-xs text-slate-600">Evaluated deterministically in priority order upon transaction ingestion</p>
               </div>
-              <span className="text-xs font-semibold text-slate-400">{rules.length} Rules Defined</span>
+              <span className="text-xs font-semibold text-slate-600">{rules.length} Rules Defined</span>
             </div>
 
-            <div className="divide-y divide-[#1e1e24]">
+            <div className="divide-y divide-[#e2e8f0]">
               {rules.map((rule, idx) => {
                 const ruleClassification = (rule.txTypeMatch || (rule as any).classification || 'GENERAL');
                 const ruleDesc = rule.conditionDescription || (rule as any).description || rule.explanationTemplate;
                 const isActive = rule.active ?? (rule as any).enabled ?? true;
 
                 return (
-                  <div key={rule.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs hover:bg-[#16161c]/60 transition-colors">
+                  <div key={rule.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-3 text-xs hover:bg-[#f8fafc]/60 transition-colors">
                     <div className="space-y-1">
                       <div className="flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-[#1c1c21] border border-[#2d2d35] font-mono font-bold flex items-center justify-center text-[10px] text-purple-300">
+                        <span className="w-5 h-5 rounded-full bg-[#f1f5f9] border border-[#cbd5e1] font-mono font-bold flex items-center justify-center text-[10px] text-purple-700">
                           {idx + 1}
                         </span>
-                        <h4 className="font-bold text-white text-sm">{rule.name}</h4>
-                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                        <h4 className="font-bold text-slate-900 text-sm">{rule.name}</h4>
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-500/20 text-purple-700 border border-purple-500/30">
                           {String(ruleClassification).replace(/_/g, ' ')}
                         </span>
                       </div>
-                      <p className="text-slate-400 text-[11px] font-mono">{ruleDesc}</p>
-                      <div className="flex items-center gap-2 text-slate-400 text-[11px] pt-1">
-                        <span>Debit: <strong className="text-slate-200">{rule.debitAccountCode} ({rule.debitAccountName})</strong></span>
+                      <p className="text-slate-600 text-[11px] font-mono">{ruleDesc}</p>
+                      <div className="flex items-center gap-2 text-slate-600 text-[11px] pt-1">
+                        <span>Debit: <strong className="text-slate-800">{rule.debitAccountCode} ({rule.debitAccountName})</strong></span>
                         <span>•</span>
-                        <span>Credit: <strong className="text-slate-200">{rule.creditAccountCode} ({rule.creditAccountName})</strong></span>
+                        <span>Credit: <strong className="text-slate-800">{rule.creditAccountCode} ({rule.creditAccountName})</strong></span>
                       </div>
                     </div>
 
@@ -127,8 +127,8 @@ export const AccountingRules: React.FC = () => {
                         onClick={() => handleToggleRule(rule.id)}
                         className={`px-3 py-1.5 rounded-md font-semibold text-xs transition-colors cursor-pointer ${
                           isActive
-                            ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 hover:bg-emerald-500/30'
-                            : 'bg-[#16161c] text-slate-400 border border-[#2d2d35] hover:bg-[#1c1c21]'
+                            ? 'bg-emerald-500/20 text-emerald-700 border border-emerald-500/30 hover:bg-emerald-500/30'
+                            : 'bg-[#f8fafc] text-slate-600 border border-[#cbd5e1] hover:bg-[#f1f5f9]'
                         }`}
                       >
                         {isActive ? 'Active' : 'Disabled'}
@@ -144,16 +144,16 @@ export const AccountingRules: React.FC = () => {
 
       {/* TAB 2: CHART OF ACCOUNTS */}
       {activeTab === 'COA' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] shadow-xs overflow-hidden">
-          <div className="p-4 bg-[#16161c] border-b border-[#222226] text-xs">
-            <span className="font-bold text-white">Standard Institutional Chart of Accounts</span>
-            <span className="text-slate-400 ml-2">Digital Asset Subledger Mapping</span>
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] shadow-xs overflow-hidden">
+          <div className="p-4 bg-[#f8fafc] border-b border-[#e2e8f0] text-xs">
+            <span className="font-bold text-slate-900">Standard Institutional Chart of Accounts</span>
+            <span className="text-slate-600 ml-2">Digital Asset Subledger Mapping</span>
           </div>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead>
-                <tr className="border-b border-[#222226] text-slate-400 font-semibold bg-[#16161c]">
+                <tr className="border-b border-[#e2e8f0] text-slate-600 font-semibold bg-[#f8fafc]">
                   <th className="py-2.5 px-4 w-28">GL Code</th>
                   <th className="py-2.5 px-4">Account Name</th>
                   <th className="py-2.5 px-4">Category</th>
@@ -161,14 +161,14 @@ export const AccountingRules: React.FC = () => {
                   <th className="py-2.5 px-4">Mapped Digital Asset</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#1e1e24]">
+              <tbody className="divide-y divide-[#e2e8f0]">
                 {chartOfAccounts.map((acc) => (
-                  <tr key={acc.code} className="hover:bg-[#16161c]/60">
-                    <td className="py-2.5 px-4 font-mono font-bold text-purple-300">{acc.code}</td>
-                    <td className="py-2.5 px-4 font-semibold text-white">{acc.name}</td>
-                    <td className="py-2.5 px-4 text-slate-300">{acc.category}</td>
-                    <td className="py-2.5 px-4 text-slate-400 font-mono text-[11px]">{acc.normalBalance}</td>
-                    <td className="py-2.5 px-4 font-mono text-purple-400 font-medium">
+                  <tr key={acc.code} className="hover:bg-[#f8fafc]/60">
+                    <td className="py-2.5 px-4 font-mono font-bold text-purple-700">{acc.code}</td>
+                    <td className="py-2.5 px-4 font-semibold text-slate-900">{acc.name}</td>
+                    <td className="py-2.5 px-4 text-slate-700">{acc.category}</td>
+                    <td className="py-2.5 px-4 text-slate-600 font-mono text-[11px]">{acc.normalBalance}</td>
+                    <td className="py-2.5 px-4 font-mono text-purple-600 font-medium">
                       {acc.supportedAssetSymbol || (acc.isDigitalAssetAccount ? 'Digital Control' : '—')}
                     </td>
                   </tr>
@@ -181,21 +181,21 @@ export const AccountingRules: React.FC = () => {
 
       {/* TAB 3: ACCOUNTING POLICIES */}
       {activeTab === 'POLICIES' && (
-        <div className="bg-[#111114] rounded-xl border border-[#222226] p-6 shadow-xs max-w-2xl space-y-5 text-xs text-white">
+        <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-6 shadow-xs max-w-2xl space-y-5 text-xs text-slate-900">
           <div>
-            <h3 className="text-sm font-bold text-white">Valuation Standards & Cost Basis Methodology</h3>
-            <p className="text-xs text-slate-400">
+            <h3 className="text-sm font-bold text-slate-900">Valuation Standards & Cost Basis Methodology</h3>
+            <p className="text-xs text-slate-600">
               Configure corporate accounting standards for balance sheet presentation and tax lot relief.
             </p>
           </div>
 
           <div className="space-y-4">
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">Financial Accounting Framework</label>
+              <label className="block font-semibold text-slate-700 mb-1">Financial Accounting Framework</label>
               <select
                 value={organization.framework}
                 onChange={(e) => updateOrganization({ framework: e.target.value as any })}
-                className="w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] font-medium text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-medium text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none"
               >
                 <option value="US_GAAP">US GAAP — FASB ASU 2023-08 (Fair Value with changes in Net Income)</option>
                 <option value="IFRS">IFRS — IAS 38 / IAS 2 (Intangible Assets with Revaluation Model)</option>
@@ -204,11 +204,11 @@ export const AccountingRules: React.FC = () => {
             </div>
 
             <div>
-              <label className="block font-semibold text-slate-300 mb-1">Tax-Lot Relief / Cost Basis Method</label>
+              <label className="block font-semibold text-slate-700 mb-1">Tax-Lot Relief / Cost Basis Method</label>
               <select
                 value={organization.costBasisMethod}
                 onChange={(e) => updateOrganization({ costBasisMethod: e.target.value as any })}
-                className="w-full px-3 py-2 rounded-lg bg-[#16161c] border border-[#2d2d35] font-medium text-white focus:ring-2 focus:ring-purple-500 focus:outline-none"
+                className="w-full px-3 py-2 rounded-lg bg-[#f8fafc] border border-[#cbd5e1] font-medium text-slate-900 focus:ring-2 focus:ring-purple-500 focus:outline-none"
               >
                 <option value="FIFO">First-In, First-Out (FIFO) — Default Institutional</option>
                 <option value="SPECIFIC_ID">Specific Identification (Cryptographic UTXO / Lot Stamping)</option>

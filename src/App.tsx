@@ -20,7 +20,11 @@ import { AuditTrail } from './components/audit/AuditTrail';
 import { DataSources } from './components/sources/DataSources';
 import { SettingsView } from './components/settings/SettingsView';
 
-const MainLayout: React.FC = () => {
+interface MainLayoutProps {
+  onBackToLanding: () => void;
+}
+
+const MainLayout: React.FC<MainLayoutProps> = ({ onBackToLanding }) => {
   const { activeModule } = useLedger();
 
   const renderActiveModule = () => {
@@ -55,14 +59,14 @@ const MainLayout: React.FC = () => {
   };
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[#0a0a0c] font-sans text-slate-100 antialiased">
+    <div className="flex h-screen w-screen overflow-hidden bg-[#ffffff] font-sans text-slate-900 antialiased">
       {/* Left Navigation Sidebar */}
       <Sidebar />
 
       {/* Main App Container */}
       <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
         {/* Global Institutional Header */}
-        <Header />
+        <Header onLogoClick={onBackToLanding} />
 
         {/* Scrollable View Canvas */}
         <main className="flex-1 overflow-y-auto p-6 md:p-8">
@@ -88,7 +92,7 @@ export function App() {
 
   return (
     <LedgerProvider>
-      <MainLayout />
+      <MainLayout onBackToLanding={() => setEntered(false)} />
     </LedgerProvider>
   );
 }
