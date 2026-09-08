@@ -3,7 +3,7 @@ import {
   ArrowRight,
   ChevronDown,
   Scale,
-  BookOpen,
+  Link2,
   FileBarChart,
   Coins,
   History,
@@ -11,7 +11,6 @@ import {
   ShieldCheck,
   Globe2,
   CheckCircle2,
-  Landmark,
   Building2,
   ArrowLeftRight,
   Banknote,
@@ -47,10 +46,10 @@ const FEATURES: { icon: React.ElementType; title: string; description: string }[
       'Continuously match wallet, custodian, exchange, blockchain, and ledger balances, and surface breaks the moment they appear.',
   },
   {
-    icon: BookOpen,
-    title: 'Subledger & Journals',
+    icon: Link2,
+    title: 'Integrate with your accounting systems',
     description:
-      'Auto-generate double-entry journal entries from digital asset activity, mapped to your chart of accounts under configurable accounting rules.',
+      'Ready integration with Xero, QuickBooks, or your ERP system to consolidate your financial reporting with ease.',
   },
   {
     icon: Coins,
@@ -69,12 +68,6 @@ const FEATURES: { icon: React.ElementType; title: string; description: string }[
     title: 'Audit Trail & Close Management',
     description:
       'Immutable audit logging and a structured month-end close checklist give auditors and controllers a defensible record of every adjustment.',
-  },
-  {
-    icon: Landmark,
-    title: 'Treasury-Ready Financial Operations',
-    description:
-      'Purpose-built for the way corporate treasuries actually operate — cost-basis tracking, entity-level books, and a ledger structure designed to sit alongside your ERP, not replace your controls.',
   },
 ];
 
@@ -265,19 +258,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
       <section id="features" className="max-w-6xl mx-auto px-6 pb-20">
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
-            Everything a controller needs to close the books
+            Everything an accountant needs to close the books
           </h2>
           <p className="mt-3 text-lg max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
             From raw wallet activity to a reconciled financial statement, in one platform.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {FEATURES.map((f, idx) => (
+          {FEATURES.map((f) => (
             <div
               key={f.title}
-              className={`bg-white rounded-xl border border-black/5 p-6 shadow-xs hover:shadow-md transition-shadow ${
-                idx === FEATURES.length - 1 ? 'sm:col-span-2 lg:col-span-3' : ''
-              }`}
+              className="bg-white rounded-xl border border-black/5 p-6 shadow-xs hover:shadow-md transition-shadow"
             >
               <div
                 className="w-11 h-11 rounded-lg flex items-center justify-center mb-3.5"
