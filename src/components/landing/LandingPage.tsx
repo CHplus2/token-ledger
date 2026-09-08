@@ -373,7 +373,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           }}
         >
           <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: GOLD }} />
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-7">Built for TradFi and Web3 startups</h2>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-7">Ready to see Token Ledger in action?</h2>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -398,7 +398,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px]" style={{ color: '#8391b3' }}>
             <span>Double-entry accounting</span>
             <span aria-hidden>|</span>
-            <span>Full audit trail</span>
+            <span>Built for TradFi and Web3 startups</span>
             <span aria-hidden>|</span>
             <span>Multi-chain custody</span>
           </div>

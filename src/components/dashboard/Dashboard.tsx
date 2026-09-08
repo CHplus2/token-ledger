@@ -31,6 +31,7 @@ import {
 import { useLedger } from '../../context/LedgerContext';
 import { MetricCard } from '../common/MetricCard';
 import { StatusBadge } from '../common/StatusBadge';
+import { AssetCategory, CATEGORY_ORDER, categoryBadgeClasses, getLedgerAssetCategory } from '../../utils/assetCategory';
 
 export const Dashboard: React.FC = () => {
   const {
@@ -65,6 +66,24 @@ export const Dashboard: React.FC = () => {
     value: a.marketValueUsd,
     percentage: ((a.marketValueUsd / (totalMarketValueUsd || 1)) * 100).toFixed(1),
   }));
+
+  const CATEGORY_COLORS: Record<AssetCategory, string> = {
+    'Tokenized Asset': '#8b5cf6',
+    Stablecoin: '#10b981',
+    Crypto: '#f59e0b',
+    Other: '#8b8b98',
+  };
+
+  const categoryDistributionData = CATEGORY_ORDER.map((category) => {
+    const assetsInCategory = assetValuations.filter((a) => getLedgerAssetCategory(a.assetType) === category);
+    const value = assetsInCategory.reduce((sum, a) => sum + (a.marketValueUsd ?? 0), 0);
+    return {
+      category,
+      value,
+      percentage: ((value / (totalMarketValueUsd || 1)) * 100).toFixed(1),
+      symbols: assetsInCategory.map((a) => a.assetSymbol),
+    };
+  }).filter((c) => c.value > 0);
 
   const sourceDistributionData = dataSources.map((s) => ({
     name: s.name.split(' ')[0] + ' ' + (s.name.split(' ')[1] || ''),
@@ -441,6 +460,38 @@ export const Dashboard: React.FC = () => {
               <ChevronRight className="w-3.5 h-3.5" />
             </button>
           </div>
+        </div>
+      </div>
+
+      {/* Portfolio by Category */}
+      <div className="bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-5 shadow-xs">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h3 className="text-sm font-bold text-slate-900">Portfolio by Category</h3>
+            <p className="text-xs text-slate-600">Tokenized Asset, Stablecoin & Crypto allocation across the book</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          {categoryDistributionData.map((c) => (
+            <div key={c.category} className="rounded-lg border border-[#e2e8f0] p-4">
+              <div className="flex items-center justify-between mb-1.5">
+                <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold border ${categoryBadgeClasses(c.category)}`}>
+                  {c.category}
+                </span>
+                <span className="text-xs font-mono text-slate-600">{c.percentage}%</span>
+              </div>
+              <div className="text-lg font-bold text-slate-900 font-mono">
+                ${c.value.toLocaleString(undefined, { maximumFractionDigits: 0 })}
+              </div>
+              <div className="mt-1.5 h-1.5 rounded-full bg-[#f1f5f9] overflow-hidden">
+                <div
+                  className="h-full rounded-full"
+                  style={{ width: `${c.percentage}%`, backgroundColor: CATEGORY_COLORS[c.category] }}
+                />
+              </div>
+              <div className="mt-1.5 text-[10px] text-slate-500">{c.symbols.join(', ')}</div>
+            </div>
+          ))}
         </div>
       </div>
 
