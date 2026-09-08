@@ -65,7 +65,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md', c
           className={`inline-flex items-center gap-1 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/20 font-medium ${sizeClasses}`}
         >
           <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
-          <span>{customLabel || (status === 'RECONCILED' ? '✓ Reconciled' : safeFormat(status))}</span>
+          <span>{customLabel || (status === 'RECONCILED' ? 'Reconciled' : safeFormat(status))}</span>
         </span>
       );
 
@@ -79,7 +79,7 @@ export const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'md', c
           className={`inline-flex items-center gap-1 rounded-full bg-amber-500/10 text-amber-700 border border-amber-500/30 font-medium ${sizeClasses}`}
         >
           <AlertTriangle className="w-3.5 h-3.5 text-amber-600 shrink-0" />
-          <span>{customLabel || (status === 'BREAK' ? '⚠ Break' : safeFormat(status))}</span>
+          <span>{customLabel || (status === 'BREAK' ? 'Break' : safeFormat(status))}</span>
         </span>
       );
 

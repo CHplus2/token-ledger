@@ -11,6 +11,7 @@ import {
   AlertCircle,
   HelpCircle,
   UserCheck,
+  LogOut,
 } from 'lucide-react';
 import { useLedger } from '../../context/LedgerContext';
 import { UserRole } from '../../types';
@@ -18,9 +19,10 @@ import { Logo } from './Logo';
 
 interface HeaderProps {
   onLogoClick?: () => void;
+  onLogout?: () => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
+export const Header: React.FC<HeaderProps> = ({ onLogoClick, onLogout }) => {
   const {
     organization,
     entities,
@@ -148,6 +150,16 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
             ))}
           </select>
         </div>
+
+        {/* Log Out */}
+        <button
+          id="btn-logout"
+          onClick={onLogout}
+          title="Log out"
+          className="p-1.5 text-slate-600 hover:text-rose-600 hover:bg-rose-500/10 rounded-lg transition-colors"
+        >
+          <LogOut className="w-4 h-4" />
+        </button>
 
         {/* Ledger AI Trigger */}
         <button
