@@ -11,10 +11,10 @@ import {
   AlertCircle,
   HelpCircle,
   UserCheck,
-  FileText,
 } from 'lucide-react';
 import { useLedger } from '../../context/LedgerContext';
 import { UserRole } from '../../types';
+import { Logo } from './Logo';
 
 interface HeaderProps {
   onLogoClick?: () => void;
@@ -48,12 +48,7 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
           title="Back to Token Ledger overview"
           className="flex items-center gap-2.5 cursor-pointer text-left"
         >
-          <div
-            className="w-8 h-8 rounded-full flex items-center justify-center shadow-xs ring-2"
-            style={{ backgroundColor: '#132043', color: '#C9A227', ['--tw-ring-color' as any]: '#C9A22766' }}
-          >
-            <FileText className="w-4 h-4" strokeWidth={2} />
-          </div>
+          <Logo size={32} className="shadow-xs" />
           <div>
             <div className="text-xs font-semibold uppercase tracking-wider text-slate-600">
               Institutional Subledger

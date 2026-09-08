@@ -12,7 +12,6 @@ import {
   Globe2,
   CheckCircle2,
   Landmark,
-  FileText,
   Building2,
   ArrowLeftRight,
   Banknote,
@@ -20,6 +19,7 @@ import {
   Briefcase,
   Smartphone,
 } from 'lucide-react';
+import { Logo } from '../common/Logo';
 
 interface LandingPageProps {
   onLaunch: () => void;
@@ -156,12 +156,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
       <header className="sticky top-0 z-20 border-b border-black/5 bg-white/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div
-              className="w-12 h-12 rounded-full flex items-center justify-center shadow-xs ring-2"
-              style={{ backgroundColor: NAVY, color: GOLD, ['--tw-ring-color' as any]: `${GOLD}66` }}
-            >
-              <FileText className="w-6 h-6" strokeWidth={2} />
-            </div>
+            <Logo size={48} className="shadow-xs" />
             <span className="text-xl font-bold tracking-tight" style={{ color: DARK_TEXT }}>
               Token Ledger
             </span>
