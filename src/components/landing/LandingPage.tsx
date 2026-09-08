@@ -13,6 +13,12 @@ import {
   CheckCircle2,
   Landmark,
   FileText,
+  Building2,
+  ArrowLeftRight,
+  Banknote,
+  Fingerprint,
+  Briefcase,
+  Smartphone,
 } from 'lucide-react';
 
 interface LandingPageProps {
@@ -92,6 +98,39 @@ const STEPS: { step: string; title: string; description: string }[] = [
     step: '04',
     title: 'Report with confidence',
     description: 'Close the period and produce audit-ready Balance Sheet, P&L, and Trial Balance reports on demand.',
+  },
+];
+
+const SEGMENTS: { icon: React.ElementType; title: string; description: string }[] = [
+  {
+    icon: Building2,
+    title: 'Banks',
+    description: 'Enterprise-grade back-office controls built to keep tokenized asset reporting accurate.',
+  },
+  {
+    icon: ArrowLeftRight,
+    title: 'Exchanges and brokers',
+    description: 'Reconcile on-chain activity against internal systems and stay audit-ready at all times.',
+  },
+  {
+    icon: Banknote,
+    title: 'Stablecoin issuers',
+    description: 'Auditable stablecoin supply and reserve tracking built for institutional-grade reporting.',
+  },
+  {
+    icon: Fingerprint,
+    title: 'Token issuers',
+    description: 'Auditable token supply tracking across every chain your issuance touches.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Asset managers',
+    description: 'Auditable accounting and NAV reporting across on-chain and off-chain holdings alike.',
+  },
+  {
+    icon: Smartphone,
+    title: 'Fintechs & payments',
+    description: 'Automatically reconcile on-chain transactions across every system you run.',
   },
 ];
 
@@ -295,6 +334,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         </div>
       </section>
 
+      {/* Serving regulated institutions */}
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
+            Serving regulated institutions across Asia
+          </h2>
+          <p className="mt-2 text-sm max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
+            From banks to Web3-native fintechs, Token Ledger adapts to how regulated institutions already close
+            the books.
+          </p>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          {SEGMENTS.map((s) => (
+            <div key={s.title} className="bg-white rounded-xl border border-black/5 p-5 shadow-xs hover:shadow-md transition-shadow">
+              <div
+                className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+                style={{ backgroundColor: NAVY }}
+              >
+                <s.icon className="w-4.5 h-4.5" style={{ color: GOLD }} />
+              </div>
+              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+                {s.title}
+              </h3>
+              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+                {s.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* CTA banner */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
         <div
@@ -306,20 +376,40 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           }}
         >
           <div className="absolute top-0 left-0 right-0 h-1" style={{ backgroundColor: GOLD }} />
-          <h2 className="text-2xl font-bold text-white mb-2">See it running on real seeded data</h2>
-          <p className="text-sm max-w-xl mx-auto mb-6" style={{ color: '#a9b4d1' }}>
-            The demo ships with a full month of sample activity for Meridian Capital Group — transactions,
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-2">Built for TradFi and Web3 startups</h2>
+          <p className="text-sm max-w-xl mx-auto mb-7" style={{ color: '#a9b4d1' }}>
+            The demo ships with a full month of seeded sample activity for Meridian Capital Group — transactions,
             reconciliation breaks, journal entries, and a multi-chain custody portfolio — so every screen shows real
             numbers, not placeholders.
           </p>
-          <button
-            onClick={onLaunch}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
-            style={{ backgroundColor: GOLD, color: NAVY }}
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              onLaunch();
+            }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto"
           >
-            Launch Interactive Demo
-            <ArrowRight className="w-4 h-4" />
-          </button>
+            <input
+              type="email"
+              placeholder="Your work email"
+              className="w-full sm:w-64 px-4 py-3 rounded-lg text-sm outline-none bg-white placeholder:text-slate-400"
+              style={{ color: DARK_TEXT }}
+            />
+            <button
+              type="submit"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
+              style={{ backgroundColor: GOLD, color: NAVY }}
+            >
+              Request a Demo
+            </button>
+          </form>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px]" style={{ color: '#8391b3' }}>
+            <span>Double-entry accounting</span>
+            <span aria-hidden>|</span>
+            <span>Full audit trail</span>
+            <span aria-hidden>|</span>
+            <span>Multi-chain custody</span>
+          </div>
         </div>
       </section>
 
