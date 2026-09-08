@@ -421,7 +421,7 @@ export const INITIAL_CHART_OF_ACCOUNTS: ChartAccount[] = [
   { code: '2200', name: 'Accrued Tokenization Platform & Custody Fees', category: 'LIABILITY', normalBalance: 'CREDIT', balance: 5400, description: 'Platform fees due to Securitize / Backed / Custodians', active: true },
 
   // Equity (3000-3999)
-  { code: '3100', name: 'Retained Earnings', category: 'EQUITY', normalBalance: 'CREDIT', balance: 28500000, description: 'Cumulative historical earnings', active: true },
+  { code: '3100', name: 'Retained Earnings', category: 'EQUITY', normalBalance: 'CREDIT', balance: 16025750, description: 'Cumulative historical earnings (balances the subledger: Total Assets = Total Liabilities + Equity + current-period Net Income)', active: true },
   { code: '3200', name: 'Tokenized Asset Revaluation Reserve (FVOCI / Net Income)', category: 'EQUITY', normalBalance: 'CREDIT', balance: 3450000, description: 'Unrealized fair value gains under IFRS 9 / IAS 38', active: true },
 
   // Income (4000-4999)
