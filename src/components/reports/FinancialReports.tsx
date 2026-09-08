@@ -7,8 +7,9 @@ import {
 import { useLedger } from '../../context/LedgerContext';
 import { PageHeader } from '../common/PageHeader';
 import { ChartAccount } from '../../types';
+import { StatementBuilder } from './StatementBuilder';
 
-type ReportType = 'TRIAL_BALANCE' | 'BALANCE_SHEET' | 'INCOME_STATEMENT' | 'ROLL_FORWARD';
+type ReportType = 'TRIAL_BALANCE' | 'BALANCE_SHEET' | 'INCOME_STATEMENT' | 'ROLL_FORWARD' | 'STATEMENT_BUILDER';
 
 const usd = (v: number) =>
   `$${(v ?? 0).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
@@ -88,6 +89,7 @@ export const FinancialReports: React.FC = () => {
           { id: 'BALANCE_SHEET' as ReportType, label: 'Balance Sheet' },
           { id: 'INCOME_STATEMENT' as ReportType, label: 'Profit & Loss' },
           { id: 'ROLL_FORWARD' as ReportType, label: 'Asset Roll-Forward Schedule' },
+          { id: 'STATEMENT_BUILDER' as ReportType, label: 'Statement Builder' },
         ].map((tab) => (
           <button
             key={tab.id}
@@ -339,6 +341,20 @@ export const FinancialReports: React.FC = () => {
             </table>
           </div>
         </div>
+      )}
+
+      {/* STATEMENT BUILDER */}
+      {activeReport === 'STATEMENT_BUILDER' && (
+        <StatementBuilder
+          organization={organization}
+          closeDate={closeDate}
+          currency={currency}
+          totalAssets={totalAssets}
+          totalLiabilities={totalLiabilities}
+          totalEquity={totalEquity}
+          netIncome={netIncome}
+          assetValuations={assetValuations}
+        />
       )}
     </div>
   );
