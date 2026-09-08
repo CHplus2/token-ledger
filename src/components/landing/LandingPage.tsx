@@ -89,8 +89,11 @@ const STEPS: { step: string; title: string; description: string }[] = [
 export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
   return (
     <div className="min-h-screen w-full overflow-y-auto bg-[#ffffff] text-slate-900">
+      {/* Brand masthead accent */}
+      <div className="h-1 w-full bg-[#C9A227]" />
+
       {/* Top nav */}
-      <header className="sticky top-0 z-20 border-b border-[#e2e8f0] bg-[#ffffff]/90 backdrop-blur-sm">
+      <header className="sticky top-1 z-20 border-b border-[#e2e8f0] bg-[#ffffff]/90 backdrop-blur-sm">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-600 to-indigo-600 text-white flex items-center justify-center font-bold text-sm shadow-xs">
@@ -110,12 +113,14 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
 
       {/* Hero */}
       <section className="max-w-6xl mx-auto px-6 pt-20 pb-16 text-center">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-700 text-[11px] font-semibold uppercase tracking-wider mb-6">
-          <Sparkles className="w-3 h-3" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-[#C9A227]/40 bg-[#C9A227]/10 text-[#6e5915] text-[11px] font-semibold uppercase tracking-wider mb-6">
+          <Sparkles className="w-3 h-3 text-[#C9A227]" />
           Digital Asset Accounting Infrastructure
         </div>
         <h1 className="text-4xl sm:text-5xl font-bold text-slate-900 tracking-tight leading-tight max-w-3xl mx-auto">
-          Your CFO for the tokenized finance world.
+          Your{' '}
+          <span className="underline decoration-[#C9A227] decoration-4 underline-offset-4">CFO</span> for the
+          tokenized finance world.
         </h1>
         <p className="mt-4 text-lg font-medium text-slate-700 max-w-2xl mx-auto leading-relaxed">
           Institutional-grade financial data &amp; accounting for digital assets.
@@ -152,7 +157,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
             <Globe2 className="w-3.5 h-3.5 text-indigo-600" /> Multi-chain, multi-custodian consolidation
           </span>
           <span className="flex items-center gap-1.5">
-            <Scale className="w-3.5 h-3.5 text-amber-600" /> Five-way reconciliation across every source
+            <Scale className="w-3.5 h-3.5 text-[#C9A227]" /> Five-way reconciliation across every source
           </span>
         </div>
       </section>
@@ -191,7 +196,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {STEPS.map((s) => (
             <div key={s.step} className="relative bg-[#ffffff] rounded-xl border border-[#e2e8f0] p-5">
-              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-purple-500 to-indigo-500 mb-2">
+              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-[#C9A227] to-indigo-600 mb-2">
                 {s.step}
               </div>
               <h3 className="text-sm font-bold text-slate-900 mb-1.5">{s.title}</h3>
@@ -203,7 +208,8 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
 
       {/* CTA banner */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <div className="rounded-2xl border border-purple-500/25 bg-gradient-to-br from-purple-600/10 to-indigo-600/10 p-10 text-center">
+        <div className="rounded-2xl border border-[#C9A227]/30 bg-gradient-to-br from-purple-600/10 to-indigo-600/10 p-10 text-center relative overflow-hidden">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-[#C9A227]" />
           <h2 className="text-2xl font-bold text-slate-900 mb-2">See it running on real seeded data</h2>
           <p className="text-sm text-slate-600 max-w-xl mx-auto mb-6">
             The demo ships with a full month of sample activity for Meridian Capital Group — transactions,

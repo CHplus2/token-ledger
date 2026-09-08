@@ -38,7 +38,7 @@ export const Header: React.FC<HeaderProps> = ({ onLogoClick }) => {
   const selectedEntity = entities.find((e) => e.id === selectedEntityId) || entities[0];
 
   return (
-    <header className="h-16 bg-[#ffffff] border-b border-[#e2e8f0] px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
+    <header className="h-16 bg-[#ffffff] border-b border-[#e2e8f0] border-t-[3px] border-t-[#C9A227] px-6 flex items-center justify-between sticky top-0 z-30 shadow-xs">
       {/* Left: Organization & Entity Switcher */}
       <div className="flex items-center gap-4">
         <button
