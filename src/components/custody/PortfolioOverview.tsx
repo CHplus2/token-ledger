@@ -96,9 +96,9 @@ export const PortfolioOverview: React.FC<PortfolioOverviewProps> = ({ data }) =>
     <div className="space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <MetricCard
-          title="Total Portfolio Value"
+          title="Total Portfolio Value (Consolidated)"
           value={formatUsdCompact(summary.totalValue)}
-          secondary={`${summary.holdingCount} holdings across all chains`}
+          secondary={`${summary.holdingCount} holdings, all wallets & chains combined`}
           icon={DollarSign}
           badgeText="Mock Data"
           badgeVariant="blue"
@@ -124,21 +124,21 @@ export const PortfolioOverview: React.FC<PortfolioOverviewProps> = ({ data }) =>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <RollupCard
           title="By Asset"
-          subtitle="Fair value allocation per instrument"
+          subtitle="Each bar = one asset's value summed across every wallet/chain it's held on"
           icon={Coins}
           rows={summary.byAsset}
           chartType="pie"
         />
         <RollupCard
           title="By Chain"
-          subtitle="Chain concentration risk"
+          subtitle="Chain concentration risk, across all assets and wallets on that chain"
           icon={Globe2}
           rows={summary.byChain}
           chartType="bar"
         />
         <RollupCard
           title="By Custodian"
-          subtitle="Custodial counterparty concentration"
+          subtitle="Custodial counterparty concentration, across all assets held with that custodian"
           icon={ShieldCheck}
           rows={summary.byCustodian}
           chartType="bar"

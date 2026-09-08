@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, CheckCircle2 } from 'lucide-react';
 import { PageHeader } from '../common/PageHeader';
 import { useCustodyPortfolio } from '../../hooks/useCustodyPortfolio';
 import { PortfolioOverview } from './PortfolioOverview';
@@ -15,6 +15,7 @@ export const CustodyPortfolio: React.FC = () => {
   const [selectedAssetId, setSelectedAssetId] = useState<string | null>(null);
 
   const selectedAsset = data.assets.find((a) => a.id === selectedAssetId) || null;
+  const managerName = data.assetManagers[0]?.name || 'your company';
 
   return (
     <div className="space-y-6">
@@ -27,11 +28,23 @@ export const CustodyPortfolio: React.FC = () => {
         <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-4 text-xs text-rose-300">{data.error}</div>
       )}
 
+      <div className="rounded-xl border border-emerald-500/25 bg-emerald-500/5 p-3 text-[11px] text-emerald-200 leading-relaxed flex items-start gap-2">
+        <CheckCircle2 className="w-3.5 h-3.5 text-emerald-300 shrink-0 mt-0.5" />
+        <span>
+          <strong>Yes, this consolidates across wallets.</strong> Every total below is summed live across all of{' '}
+          {managerName}&apos;s wallets, chains, and custodians for a given asset — one asset held on 3 different chains
+          in 3 different wallets shows as a single combined total. Nothing here is per-wallet in isolation; click into
+          any asset (Holdings Table → click a row) to see the individual chain/wallet/custodian breakdown that rolls
+          up into that total.
+        </span>
+      </div>
+
       <div className="rounded-xl border border-indigo-500/25 bg-indigo-500/5 p-3 text-[11px] text-indigo-200 leading-relaxed flex items-start gap-2">
         <Sparkles className="w-3.5 h-3.5 text-indigo-300 shrink-0 mt-0.5" />
         <span>
           MVP scope: static/seeded data with basic CRUD only. No live on-chain balance reading, no auth, no real-time
-          pricing, no reconciliation/alerting, and no historical time-series — planned for a later phase.
+          pricing, no reconciliation/alerting (i.e. no cross-checking these consolidated totals against a second
+          independent source), and no historical time-series — planned for a later phase.
         </span>
       </div>
 

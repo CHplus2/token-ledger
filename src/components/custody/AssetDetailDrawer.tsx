@@ -58,13 +58,13 @@ export const AssetDetailDrawer: React.FC<AssetDetailDrawerProps> = ({ asset, onC
             <span className="font-semibold text-white">{ASSET_TYPE_LABELS[asset.assetType] || asset.assetType}</span>
           </div>
           <div className="flex items-center justify-between pt-2 border-t border-[#222226]">
-            <span className="text-slate-400">Total Fair Value:</span>
+            <span className="text-slate-400">Total Fair Value (consolidated):</span>
             <span className="font-mono font-bold text-base text-white">{formatUsd(totalValue)}</span>
           </div>
           <div className="flex items-center justify-between">
-            <span className="text-slate-400">Held Across:</span>
+            <span className="text-slate-400">Sum of:</span>
             <span className="font-mono font-semibold text-purple-300">
-              {chainCount} chain{chainCount !== 1 ? 's' : ''} • {assetHoldings.length} holding{assetHoldings.length !== 1 ? 's' : ''}
+              {chainCount} chain{chainCount !== 1 ? 's' : ''} • {assetHoldings.length} holding{assetHoldings.length !== 1 ? 's' : ''} below
             </span>
           </div>
         </div>

@@ -43,6 +43,11 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
     }
   };
 
+  const confirmThen = (label: string, fn: () => Promise<void>) => {
+    if (!window.confirm(`Delete ${label}? This cannot be undone.`)) return;
+    withErrorHandling(fn);
+  };
+
   return (
     <div className="space-y-4">
       <div className="rounded-xl border border-amber-500/30 bg-amber-500/10 p-3 text-[11px] text-amber-200 leading-relaxed">
@@ -82,7 +87,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
           assets={assets}
           issuers={issuers}
           onCreate={(d) => withErrorHandling(() => createAsset(d))}
-          onDelete={(id) => withErrorHandling(() => deleteAsset(id))}
+          onDelete={(id) => confirmThen('this asset', () => deleteAsset(id))}
         />
       )}
 
@@ -91,7 +96,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
           wallets={wallets}
           chains={chains}
           onCreate={(d) => withErrorHandling(() => createWallet(d))}
-          onDelete={(id) => withErrorHandling(() => deleteWallet(id))}
+          onDelete={(id) => confirmThen('this wallet', () => deleteWallet(id))}
         />
       )}
 
@@ -99,7 +104,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
         <CustodiansPanel
           custodians={custodians}
           onCreate={(d) => withErrorHandling(() => createCustodian(d))}
-          onDelete={(id) => withErrorHandling(() => deleteCustodian(id))}
+          onDelete={(id) => confirmThen('this custodian', () => deleteCustodian(id))}
         />
       )}
 
@@ -112,7 +117,7 @@ export const ManageEntities: React.FC<ManageEntitiesProps> = ({ data }) => {
           custodians={custodians}
           assetManagers={assetManagers}
           onCreate={(d) => withErrorHandling(() => createHolding(d))}
-          onDelete={(id) => withErrorHandling(() => deleteHolding(id))}
+          onDelete={(id) => confirmThen('this holding', () => deleteHolding(id))}
         />
       )}
     </div>
