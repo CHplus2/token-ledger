@@ -145,7 +145,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
   return (
     <div className="min-h-screen w-full overflow-y-auto" style={{ backgroundColor: LIGHT_BG, color: DARK_TEXT }}>
       {/* Announcement bar */}
-      <div className="text-center text-xs font-semibold py-2 px-4" style={{ backgroundColor: GOLD, color: NAVY }}>
+      <div className="text-center text-base font-semibold py-2.5 px-4" style={{ backgroundColor: GOLD, color: NAVY }}>
         Live demo: multi-chain custody, five-way reconciliation & audit-ready reports — all in one place.{' '}
         <button onClick={onLaunch} className="underline underline-offset-2 cursor-pointer">
           See it now →
@@ -162,17 +162,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
             </span>
           </div>
 
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium" style={{ color: DARK_TEXT }}>
+          <nav className="hidden md:flex items-center gap-7 text-base font-medium" style={{ color: DARK_TEXT }}>
             <div className="relative group py-2">
               <button className="flex items-center gap-1 cursor-pointer">
-                Solutions <ChevronDown className="w-3.5 h-3.5" style={{ color: MUTED_TEXT }} />
+                Solutions <ChevronDown className="w-4 h-4" style={{ color: MUTED_TEXT }} />
               </button>
-              <div className="absolute left-0 top-full mt-1 w-56 rounded-xl border border-black/5 bg-white shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+              <div className="absolute left-0 top-full mt-1 w-60 rounded-xl border border-black/5 bg-white shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
                 {NAV_DROPDOWN.map((item) => (
                   <a
                     key={item.label}
                     href={item.href}
-                    className="block px-4 py-2 text-xs font-semibold hover:bg-[#f1f5f9]"
+                    className="block px-4 py-2.5 text-sm font-semibold hover:bg-[#f1f5f9]"
                     style={{ color: DARK_TEXT }}
                   >
                     {item.label}
@@ -189,16 +189,16 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           </nav>
 
           <div className="flex items-center gap-4">
-            <span className="hidden sm:inline text-sm font-medium" style={{ color: MUTED_TEXT }} title="Demo only — no accounts needed">
+            <span className="hidden sm:inline text-base font-medium" style={{ color: MUTED_TEXT }} title="Demo only — no accounts needed">
               Sign in
             </span>
             <button
               onClick={onLaunch}
-              className="flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
+              className="flex items-center gap-1.5 px-4 py-2.5 rounded-lg text-sm font-semibold shadow-xs transition-opacity hover:opacity-90 cursor-pointer"
               style={{ backgroundColor: GOLD, color: NAVY }}
             >
               Request a demo
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -215,7 +215,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
       >
         <div className="max-w-4xl mx-auto relative z-10">
           <div
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border text-[11px] font-semibold uppercase tracking-wider mb-7"
+            className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-sm font-semibold uppercase tracking-wider mb-7"
             style={{ borderColor: `${GOLD}66`, backgroundColor: `${GOLD}1a`, color: GOLD }}
           >
             Digital Asset Accounting Infrastructure
@@ -226,40 +226,37 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <button
               onClick={onLaunch}
-              className="flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
               style={{ backgroundColor: GOLD, color: NAVY }}
             >
               Launch Interactive Demo
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-5 h-5" />
             </button>
             <a
               href="#how-it-works"
-              className="flex items-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold border transition-colors hover:bg-white/5"
+              className="flex items-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold border transition-colors hover:bg-white/5"
               style={{ borderColor: '#3a4970', color: 'white' }}
             >
               See how it works
             </a>
           </div>
-          <p className="mt-5 text-[11px]" style={{ color: '#6f7ea3' }}>
-            Fully interactive demo running on seeded sample data for Meridian Capital Group — no signup required.
-          </p>
         </div>
       </section>
 
       {/* Trust bar */}
       <section id="trust" className="max-w-6xl mx-auto px-6 -mt-10 relative z-10 pb-16">
-        <div className="rounded-xl border border-black/5 bg-white shadow-lg p-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-xs" style={{ color: MUTED_TEXT }}>
-          <span className="flex items-center gap-1.5">
-            <CheckCircle2 className="w-3.5 h-3.5" style={{ color: GOLD }} /> Double-entry accounting, always in balance
+        <div className="rounded-xl border border-black/5 bg-white shadow-lg p-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-base" style={{ color: MUTED_TEXT }}>
+          <span className="flex items-center gap-2">
+            <CheckCircle2 className="w-5 h-5" style={{ color: GOLD }} /> Double-entry accounting, always in balance
           </span>
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5" style={{ color: GOLD }} /> Full audit trail on every posting
+          <span className="flex items-center gap-2">
+            <ShieldCheck className="w-5 h-5" style={{ color: GOLD }} /> Full audit trail on every posting
           </span>
-          <span className="flex items-center gap-1.5">
-            <Globe2 className="w-3.5 h-3.5" style={{ color: GOLD }} /> Multi-chain, multi-custodian consolidation
+          <span className="flex items-center gap-2">
+            <Globe2 className="w-5 h-5" style={{ color: GOLD }} /> Multi-chain, multi-custodian consolidation
           </span>
-          <span className="flex items-center gap-1.5">
-            <Scale className="w-3.5 h-3.5" style={{ color: GOLD }} /> Five-way reconciliation across every source
+          <span className="flex items-center gap-2">
+            <Scale className="w-5 h-5" style={{ color: GOLD }} /> Five-way reconciliation across every source
           </span>
         </div>
       </section>
@@ -270,7 +267,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
             Everything a controller needs to close the books
           </h2>
-          <p className="mt-2 text-sm max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
+          <p className="mt-3 text-lg max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
             From raw wallet activity to a reconciled financial statement, in one platform.
           </p>
         </div>
@@ -278,20 +275,20 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           {FEATURES.map((f, idx) => (
             <div
               key={f.title}
-              className={`bg-white rounded-xl border border-black/5 p-5 shadow-xs hover:shadow-md transition-shadow ${
+              className={`bg-white rounded-xl border border-black/5 p-6 shadow-xs hover:shadow-md transition-shadow ${
                 idx === FEATURES.length - 1 ? 'sm:col-span-2 lg:col-span-3' : ''
               }`}
             >
               <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+                className="w-11 h-11 rounded-lg flex items-center justify-center mb-3.5"
                 style={{ backgroundColor: `${NAVY}14` }}
               >
-                <f.icon className="w-4.5 h-4.5" style={{ color: NAVY }} />
+                <f.icon className="w-5.5 h-5.5" style={{ color: NAVY }} />
               </div>
-              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+              <h3 className="text-base font-bold mb-2" style={{ color: DARK_TEXT }}>
                 {f.title}
               </h3>
-              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+              <p className="text-base leading-relaxed" style={{ color: MUTED_TEXT }}>
                 {f.description}
               </p>
             </div>
@@ -308,17 +305,17 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {STEPS.map((s) => (
-            <div key={s.step} className="relative bg-white rounded-xl border border-black/5 p-5">
+            <div key={s.step} className="relative bg-white rounded-xl border border-black/5 p-6">
               <div
-                className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-br mb-2"
+                className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-br mb-2.5"
                 style={{ backgroundImage: `linear-gradient(to bottom right, ${GOLD}, ${NAVY})` }}
               >
                 {s.step}
               </div>
-              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+              <h3 className="text-base font-bold mb-2" style={{ color: DARK_TEXT }}>
                 {s.title}
               </h3>
-              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+              <p className="text-base leading-relaxed" style={{ color: MUTED_TEXT }}>
                 {s.description}
               </p>
             </div>
@@ -332,24 +329,24 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
           <h2 className="text-2xl sm:text-3xl font-bold" style={{ color: DARK_TEXT }}>
             Serving regulated institutions across Asia
           </h2>
-          <p className="mt-2 text-sm max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
+          <p className="mt-3 text-lg max-w-xl mx-auto" style={{ color: MUTED_TEXT }}>
             From banks to Web3-native fintechs, Token Ledger adapts to how regulated institutions already close
             the books.
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {SEGMENTS.map((s) => (
-            <div key={s.title} className="bg-white rounded-xl border border-black/5 p-5 shadow-xs hover:shadow-md transition-shadow">
+            <div key={s.title} className="bg-white rounded-xl border border-black/5 p-6 shadow-xs hover:shadow-md transition-shadow">
               <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center mb-3"
+                className="w-11 h-11 rounded-lg flex items-center justify-center mb-3.5"
                 style={{ backgroundColor: NAVY }}
               >
-                <s.icon className="w-4.5 h-4.5" style={{ color: GOLD }} />
+                <s.icon className="w-5.5 h-5.5" style={{ color: GOLD }} />
               </div>
-              <h3 className="text-sm font-bold mb-1.5" style={{ color: DARK_TEXT }}>
+              <h3 className="text-base font-bold mb-2" style={{ color: DARK_TEXT }}>
                 {s.title}
               </h3>
-              <p className="text-xs leading-relaxed" style={{ color: MUTED_TEXT }}>
+              <p className="text-base leading-relaxed" style={{ color: MUTED_TEXT }}>
                 {s.description}
               </p>
             </div>
@@ -379,18 +376,18 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
             <input
               type="email"
               placeholder="Your work email"
-              className="w-full sm:w-64 px-4 py-3 rounded-lg text-sm outline-none bg-white placeholder:text-slate-400"
+              className="w-full sm:w-64 px-4 py-3.5 rounded-lg text-base outline-none bg-white placeholder:text-slate-400"
               style={{ color: DARK_TEXT }}
             />
             <button
               type="submit"
-              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg text-sm font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
+              className="w-full sm:w-auto shrink-0 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg text-base font-semibold shadow-lg transition-opacity hover:opacity-90 cursor-pointer"
               style={{ backgroundColor: GOLD, color: NAVY }}
             >
               Request a Demo
             </button>
           </form>
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-[11px]" style={{ color: '#8391b3' }}>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5 text-sm" style={{ color: '#8391b3' }}>
             <span>Double-entry accounting</span>
             <span aria-hidden>|</span>
             <span>Built for TradFi and Web3 startups</span>
@@ -403,7 +400,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onLaunch }) => {
       {/* Footer */}
       <footer className="border-t border-black/5">
         <div
-          className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px]"
+          className="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm"
           style={{ color: MUTED_TEXT }}
         >
           <span>© 2026 Token Ledger. Demo environment — all data shown is seeded/mock data for illustration only.</span>
